@@ -1,3 +1,0 @@
-Place project files here:
-  CompositeMaterialDamageMechanics_HillYieldCriterion.pdf  -> shown when hasSlides: true
-Folder name must match the project "slug" in COURSES_DATA in index.html.

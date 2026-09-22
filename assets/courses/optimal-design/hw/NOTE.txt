@@ -1,4 +1,0 @@
-Place homework PDFs here, named MultidisciplinaryOptimalDesign_HW1.pdf,
-MultidisciplinaryOptimalDesign_HW2.pdf, MultidisciplinaryOptimalDesign_HW3.pdf ...
-Names are case-sensitive on GitHub Pages: use uppercase "HW".
-The number must match the "id" field in COURSES_DATA in index.html.
