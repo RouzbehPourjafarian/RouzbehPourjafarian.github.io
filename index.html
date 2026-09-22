@@ -1,0 +1,2752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rouzbeh Pourjafarian: Structural Engineer &amp; AI Researcher</title>
+<meta name="description" content="Personal academic website of Rouzbeh Pourjafarian, M.Sc. Structural Engineering at Sharif University of Technology." />
+
+<!-- Open Graph / social link previews -->
+<meta property="og:title" content="Rouzbeh Pourjafarian: Structural Engineer & AI Researcher">
+<meta property="og:description" content="M.Sc. Structural Engineering at Sharif University of Technology. Research in composite materials, structural health monitoring, and agentic AI.">
+<meta property="og:image" content="https://oeaurbhaeiojp.github.io/assets/photo.jpg">
+<meta property="og:url" content="https://oeaurbhaeiojp.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rouzbeh Pourjafarian: Structural Engineer">
+<meta name="twitter:description" content="M.Sc. Structural Engineering at Sharif University of Technology.">
+<meta name="twitter:image" content="https://oeaurbhaeiojp.github.io/assets/photo.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===========================================================
+     THEME TOKENS
+     =========================================================== */
+  :root {
+    --serif:     'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --sans:      'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --maxw:      820px;
+  }
+
+  /* Two layers, on purpose:
+       body.dark / body.light below hold the RAW PALETTE, named by the hue it
+       actually is (--indigo, --amber, --cyan).
+       The block here maps those hues to the ROLE each one plays, and the rest
+       of the stylesheet only ever uses these role names. So changing which hue
+       carries a role is a one-line edit here, not a find-and-replace.
+
+       --accent -> anything interactive or identity-bearing: links, buttons,
+                   active nav/course states, focus ring, skill pills.
+       --meta   -> supporting metadata, never an action: dates, section labels
+                   ("Homeworks"/"Projects"), semester headings, project tags.
+       --decor  -> decoration only, no meaning: the gradient under the topbar. */
+  body {
+    --bg:            var(--bg-primary);
+    --bg-soft:       var(--bg-sidebar);
+    --bg-card:       var(--bg-secondary);
+    --bg-card-2:     var(--bg-elevated);
+    --border:        var(--border-color);
+    --text:          var(--text-primary);
+    --text-dim:      var(--text-muted);
+    --accent:        var(--indigo);
+    --accent-soft:   var(--indigo-soft);
+    --accent-border: var(--indigo-border);
+    --accent-hover:  var(--indigo-deep);
+    --meta:          var(--amber);
+    --meta-soft:     var(--amber-soft);
+    --meta-border:   var(--amber-border);
+    --decor:         var(--cyan);
+  }
+
+  /* ---- DARK THEME (default): charcoal-navy ground, indigo + amber + cyan ---- */
+  body.dark {
+    --bg-primary:    #14161c;
+    --bg-secondary:  #1d2029;
+    --bg-sidebar:    #191c24;
+    --bg-elevated:   #262b36;
+    --text-primary:  #ecebf0;
+    --text-muted:    #9ba1af;
+    --border-color:  #2b303c;
+    --nav-bg:        #101217;
+    --indigo:        #9dabdc;
+    --indigo-soft:   rgba(157, 171, 220, 0.16);
+    --indigo-border: rgba(157, 171, 220, 0.38);
+    --indigo-deep:   #7c90d0;
+    --amber:         #e7a23a;
+    --amber-soft:    rgba(231, 162, 58, 0.16);
+    --amber-border:  rgba(231, 162, 58, 0.38);
+    --cyan:          #3ddbd9;
+    --link-hover:    #b9c4e8;
+    --on-accent:     #0e1015;
+    --pdf-bg:        #111111;
+  }
+
+  /* ---- LIGHT THEME: cool neutral ground, indigo + amber + cyan (not cream) ---- */
+  body.light {
+    --bg-primary:    #ffffff;
+    --bg-secondary:  #eef1f6;
+    --bg-sidebar:    #f2f4f8;
+    --bg-elevated:   #e3e7ef;
+    --text-primary:  #171a21;
+    --text-muted:    #5a616f;
+    --border-color:  #dee2ea;
+    --nav-bg:        #f3f5fa;
+    --indigo:        #3d4fce;
+    --indigo-soft:   rgba(61, 79, 206, 0.12);
+    --indigo-border: rgba(61, 79, 206, 0.32);
+    --indigo-deep:   #2e3da8;
+    --amber:         #b5750e;
+    --amber-soft:    rgba(181, 117, 14, 0.12);
+    --amber-border:  rgba(181, 117, 14, 0.32);
+    --cyan:          #0c7c82;
+    --link-hover:    #2e3da8;
+    --on-accent:     #ffffff;
+    --pdf-bg:        #ffffff;
+  }
+
+  /* Smooth color transitions everywhere when toggling themes */
+  * { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+
+  /* ===========================================================
+     RESET / BASE
+     =========================================================== */
+  * { box-sizing: border-box; }
+  /* scroll-padding-top keeps the sticky topbar from covering whatever a
+     native fragment scroll (a #hash in the address bar, a shared link,
+     even scrollIntoView) lands on; without it, the target's top few dozen
+     pixels render right under the topbar instead of below it. --topbar-h is
+     measured in JS; the fallback is the desktop topbar height. */
+  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--topbar-h, 65px) + 12px); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.25; }
+  a { color: var(--accent); text-decoration: none; transition: color 0.2s ease; }
+  a:hover { color: var(--link-hover); }
+  p { color: var(--text); }
+  img { max-width: 100%; display: block; }
+
+  /* ===========================================================
+     LAYOUT
+     -----------------------------------------------------------
+     Top nav is a STATIC horizontal bar (not fixed/sticky): it sits
+     at the very top, full width, and scrolls away with the page.
+     =========================================================== */
+  .topbar {
+    width: 100%;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  /* Static gradient underline, ties the palette together without running
+     forever and unprompted; motion here did no rhetorical work for the
+     page, it just cost the reader ambient distraction. */
+  .topbar::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--decor), var(--meta));
+    opacity: 0.7;
+  }
+  .topbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
+  .brand span { color: var(--accent); }
+  .nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 22px;
+    margin: 0 auto; /* brand on the left, nav centered, toggle pushed far right */
+  }
+
+  .topbar-actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+
+  /* Light/dark theme toggle, and (mobile only) the hamburger nav toggle:
+     both are icon-only buttons that crossfade between two SVG states. */
+  .theme-toggle, .nav-toggle {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+  }
+  .theme-toggle:hover, .nav-toggle:hover { color: var(--indigo); }
+  .theme-toggle .ticon, .nav-toggle .ticon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .theme-toggle .ticon svg, .nav-toggle .ticon svg { display: block; }
+  body.dark  .theme-toggle .ticon-moon { opacity: 1; transform: none; }
+  body.light .theme-toggle .ticon-sun  { opacity: 1; transform: none; }
+  /* Hidden on desktop entirely; the mobile breakpoint below turns it on. */
+  .nav-toggle { display: none; }
+  .nav-toggle .ticon-menu { opacity: 1; transform: none; }
+  .nav-toggle.open .ticon-menu { opacity: 0; transform: rotate(90deg) scale(0.5); }
+  .nav-toggle.open .ticon-x { opacity: 1; transform: none; }
+  .nav a {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    padding: 7px 1px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .nav a:hover { color: var(--text); }
+  .nav a.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .content {
+    padding: 0 40px 120px;
+    /* clip (not hidden) so the full-width courses view can't trigger a
+       horizontal scrollbar, while keeping the course sidebar's sticky behavior */
+    overflow-x: clip;
+  }
+  .inner { max-width: var(--maxw); margin: 0 auto; }
+
+  /* SPA pages: only the .active page is shown, with a simple fade in */
+  .page { display: none; padding-top: 40px; }
+  .page.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  section > h2 {
+    font-size: 1.7rem;
+    margin: 0 0 24px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ===========================================================
+     FOCUS RING
+     -----------------------------------------------------------
+     Themed from the palette (--accent) rather than left to the browser
+     default, and applied to every custom keyboard-operable element:
+     real buttons/links plus the role="button" divs (hw-card, proj-head).
+     =========================================================== */
+  a:focus-visible,
+  button:focus-visible,
+  .hw-card:focus-visible,
+  .proj-head:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ===========================================================
+     BUTTONS / BADGES
+     =========================================================== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    padding: 9px 16px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--text); background: var(--bg-card-2); }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: var(--on-accent); }
+  .btn-sm { padding: 6px 12px; font-size: 0.82rem; }
+
+  /* Icon inside a button (inline SVG, inherits color). Accent color on outline
+     buttons; white on the filled primary button. */
+  .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .btn:not(.btn-primary) svg { color: var(--accent); }
+
+  /* Download CV button: filled accent button that stands out from the contact buttons */
+  .btn-cv {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+    font-weight: 600;
+  }
+  .btn-cv:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: var(--on-accent);
+  }
+  .btn.btn-cv svg { color: var(--on-accent); }
+
+  /* Outlined button (used for the hero contact buttons): accent border +
+     accent text/icon, fills with the accent and light text on hover. */
+  .btn-outline {
+    background: transparent;
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .btn-outline:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+  .btn.btn-outline svg { color: var(--accent); }
+  .btn-outline:hover svg { color: var(--on-accent); }
+
+  /* Each contact method is its own button plus the real address/link as
+     plain text underneath, so a visitor can select and copy it directly
+     instead of only being able to click through. */
+  .contact-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .contact-handle { margin: 0; color: var(--text-dim); font-size: 0.82rem; user-select: all; }
+
+  /* Links that point at a file which may not be uploaded yet (CV, standalone
+     "View report" links): greyed out instead of a raw 404 as the failure
+     mode, matching the graceful placeholder every course PDF already gets. */
+  .link-unavailable { opacity: 0.45; }
+
+  /* One chip shape for both jobs: a declared skill/domain (.pill, --accent) and
+     a technology actually used in a specific piece of work (.tag, --meta).
+     They used to differ in shape too, for no reason a visitor could infer;
+     now shape is shared and color is the only thing that carries meaning. */
+  .pill, .tag {
+    display: inline-block;
+    border-radius: 999px;
+  }
+  .pill {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--accent-border);
+  }
+  .tag {
+    font-size: 0.74rem;
+    padding: 3px 10px;
+    background: var(--meta-soft);
+    color: var(--meta);
+    border: 1px solid var(--meta-border);
+    letter-spacing: 0.2px;
+  }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* ===========================================================
+     HERO
+     =========================================================== */
+  @keyframes heroIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .hero {
+    padding: 24px 28px 8px;
+    display: flex; gap: 40px; align-items: flex-start;
+    border-radius: 18px;
+    background:
+      radial-gradient(480px 220px at 8% 0%, var(--accent-soft), transparent 65%),
+      radial-gradient(420px 200px at 96% 10%, var(--meta-soft), transparent 65%);
+  }
+  .hero-text { flex: 1; animation: heroIn 0.6s ease both; }
+  .hero h1 { font-size: 2.5rem; margin: 0 0 6px; }
+  .hero .role { font-size: 1.15rem; color: var(--accent); margin: 0 0 4px; font-family: var(--serif); }
+  .hero .meta { color: var(--text-dim); margin: 0 0 20px; font-size: 0.98rem; }
+  .hero-tags { margin: 4px 0 28px 10px; gap: 8px; justify-content: flex-start; }
+  .hero-photo {
+    flex-shrink: 0;
+    width: 168px;
+    height: 168px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    animation: heroIn 0.6s ease 0.12s both;
+  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ===========================================================
+     PROJECT SHOWCASE CARDS
+     -----------------------------------------------------------
+     Collapsed: title + course + two lines of summary, thumbnail on the
+     right. Opened: the full abstract and the report's PDF viewer.
+     Used by the Course Projects tab and Research experience: one card
+     model for both.
+     =========================================================== */
+  .cproj-grid { display: flex; flex-direction: column; gap: 16px; }
+
+  .showcase {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+    /* toggleShowcase() already keeps the clicked card in place frame by
+       frame while a card above it collapses (see collapseKeepingPut). The
+       browser's own scroll anchoring tries to do the same job on its own
+       and reacts a step out of phase with that loop, so the two fight and
+       the page visibly judders. Opting every showcase card out of being an
+       anchor candidate leaves ours as the only correction running. */
+    overflow-anchor: none;
+  }
+  .showcase.open { border-color: var(--accent); }
+  .showcase-head {
+    display: flex;
+    gap: 22px;
+    /* Stretch (not flex-start) so .showcase-side spans the same height as
+       the text column; that lets the More/Less button sit at its bottom via
+       justify-content below, level with the tag row instead of floating
+       just under the thumbnail. */
+    align-items: stretch;
+    padding: 20px 22px;
+  }
+  .showcase-text { flex: 1; min-width: 0; }
+  .showcase-text .date {
+    font-size: 0.8rem;
+    color: var(--meta);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+  .showcase-text h3 { font-size: 1.15rem; margin: 6px 0 4px; transition: color 0.2s ease; }
+  .showcase-text .sub { font-size: 0.9rem; color: var(--text-dim); margin: 0 0 10px; }
+  /* One sentence stating the goal. It takes two lines on a desktop and up to
+     four on a phone; the clamp only guards against a summary that runs long. */
+  .showcase-summary {
+    margin: 0;
+    font-size: 0.95rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .showcase-text .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+
+  /* Right column of the card head: the thumbnail, with More/Less pinned to
+     the bottom of the column (see justify-content) so it lines up with the
+     tag row at the bottom of the text column beside it. */
+  .showcase-side {
+    flex-shrink: 0;
+    width: 168px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  /* No thumbnail: the side column only has to fit the More/Less button, so
+     the text column next to it (flex: 1) can use the width the thumbnail
+     would otherwise have reserved. */
+  .showcase-side.no-thumb { width: auto; }
+  .showcase-thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+  }
+  .showcase-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  /* No pic1.jpg uploaded yet: keep the slot, drop the broken-image icon. */
+  .showcase-thumb.is-empty { border-style: dashed; }
+
+  /* The only click target that opens/closes the card; the rest of the head
+     is inert. A real <button> so it gets native keyboard and focus handling
+     for free, instead of the role="button" shim the old whole-head click used. */
+  .showcase-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 7px;
+    border: 1px solid var(--accent-border);
+    background: transparent;
+    color: var(--accent);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 500;
+    line-height: 1.2;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .showcase-more:hover, .showcase-more:focus-visible { background: var(--accent-soft); border-color: var(--accent); }
+  .showcase-more svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .showcase.open .showcase-more svg,
+  .proj-card.open .showcase-more svg { transform: rotate(180deg); }
+  .showcase-more .less,
+  .showcase.open .showcase-more .more,
+  .proj-card.open .showcase-more .more { display: none; }
+  .showcase.open .showcase-more .less,
+  .proj-card.open .showcase-more .less { display: inline; }
+
+  .showcase .drawer-inner { padding: 0 22px 22px; }
+  /* Same paragraph treatment as the About page: justified, hyphenated, and
+     set apart from its neighbour rather than run together. */
+  .showcase-abstract {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+  .showcase-abstract + .showcase-abstract { margin-top: 0.9em; }
+  /* Thesis timeline: the term on the left, the work for that term beside it. */
+  .showcase-schedule { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .showcase-schedule li {
+    display: grid;
+    grid-template-columns: 10.5rem 1fr;
+    gap: 16px;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .showcase-schedule .term {
+    font-size: 0.78rem;
+    color: var(--meta);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    padding-top: 0.15em;
+  }
+  @media (max-width: 640px) {
+    .showcase-schedule li { grid-template-columns: 1fr; gap: 2px; }
+  }
+  /* Figure inside the drawer, under the abstract: the expanded counterpart
+     to the collapsed thumbnail. */
+  .showcase-figure {
+    margin: 22px 0 4px;
+    padding: 0;
+  }
+  /* Fill the column, but never upscale a figure past its own resolution:
+     a small plot centred at native size reads better than a blurry wide one. */
+  .showcase-figure img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    margin-inline: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+  }
+  .showcase-figure figcaption {
+    margin-top: 8px;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    /* Stacked: the picture on top, then the text, then More at the bottom. */
+    .showcase-head { flex-direction: column; gap: 16px; }
+    .showcase-side { display: contents; }
+    .showcase-thumb { order: -1; aspect-ratio: 16 / 9; }
+    .showcase-more { align-self: flex-start; }
+  }
+
+  /* ===========================================================
+     COURSES SECTION
+     =========================================================== */
+  .courses-layout {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    width: 100%;
+    /* Opening a report is one gesture: the layout widening to full-bleed
+       and the drawer growing open (see .drawer below), so both run on the
+       same duration and curve. Snapping this instantly while the drawer
+       eased open smoothly was the mismatch that made opening a homework
+       specifically read as abrupt: the box jumped, then the content grew.
+       Yes, this animates width/margin/padding (real layout properties, so
+       it does force a reflow each frame), accepted deliberately here since
+       it only runs on an occasional, user-triggered open/close, not on a
+       loop or anything performance-sensitive. */
+    transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                margin-left 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                padding 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Focus mode: when a PDF viewer is open, the whole courses layout (sidebar
+     + content) breaks out of the centered column to use the full page width.
+     The sidebar stays visible on the left; the content area takes the rest. */
+  .courses-layout.focus-mode {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: 0 40px;
+  }
+
+  .course-nav-col {
+    flex-shrink: 0;
+    width: 320px;
+    position: sticky;
+    /* Stop just below the now-fixed topbar rather than under it. --topbar-h
+       is measured in JS (its height changes at the mobile breakpoint, where
+       the topbar wraps to multiple rows) with a same-desktop-height fallback
+       for the instant before that first measurement runs. */
+    top: calc(var(--topbar-h, 65px) + 24px);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .course-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+  }
+  .course-nav-note {
+    margin: 0;
+    padding: 0 4px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+  .course-nav-note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  .course-nav-note a:hover { color: var(--accent); }
+  .course-nav button {
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    background: none;
+    border: none;
+    border-left: 2px solid transparent;
+    padding: 9px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    line-height: 1.35;
+  }
+  .course-nav button:hover { color: var(--text); background: var(--bg-card); }
+  .course-nav button.active {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-left-color: var(--accent);
+  }
+  .course-content { flex: 1; min-width: 0; }
+  .course-content h3.course-title { font-size: 1.45rem; margin: 0 0 4px; }
+  /* Shared "N of these · M of those" summary line style, used under a
+     section heading wherever a count is worth surfacing (course homework/
+     project counts, and the Projects/Teaching page totals below). */
+  .course-sub {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin: 0 0 24px;
+  }
+  /* Instructor sits inline in .course-sub and inherits its exact font + muted
+     color. As a link it stays muted by default and only turns accent-colored (with an
+     underline) on hover. */
+  .course-sub .instructor {
+    color: inherit;
+    font: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .course-sub a.instructor:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .course-sub .instructor-icon {
+    width: 0.85em;
+    height: 0.85em;
+    vertical-align: -0.08em;
+    margin-right: 4px;
+  }
+  /* Shared micro-label treatment for the two structural section labels
+     (previously declared twice, independently, at two sizes; see
+     .proj-block-label below, which now only overrides what differs). */
+  .sub-heading, .proj-block-label {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .sub-heading {
+    font-size: 0.78rem;
+    letter-spacing: 1.2px;
+    color: var(--meta);
+    margin: 30px 0 14px;
+    font-family: var(--sans);
+  }
+  .sub-heading:first-of-type { margin-top: 8px; }
+
+  /* HW grid */
+  /* A plain vertical stack: each item is either a two-card .hw-row or a
+     full-width .hw-drawer for one of that row's cards. Keeping drawers OUT
+     of the row's own flex context means they can never interfere with the
+     row's card-vs-card sizing math. */
+  .hw-grid { display: flex; flex-direction: column; gap: 12px; }
+  /* Two cards per row; wraps to one-per-line only if the viewport is too
+     narrow for both at their minimum width. */
+  .hw-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  /* Compact, landscape cards: number + topic on one line, ellipsis if too long */
+  .hw-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 60px;
+    flex: 1 1 0;
+    min-width: 220px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 12px 16px;
+    cursor: pointer;
+    /* The card widening is part of the same "opening" gesture as its drawer,
+       so it rides the same easing and lands with it rather than ahead of it. */
+    transition: border-color 0.2s ease, background-color 0.2s ease,
+                transform 0.2s ease, box-shadow 0.2s ease,
+                flex-grow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                min-width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden;
+  }
+  .hw-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 22px -14px rgba(0, 0, 0, 0.4); }
+  /* Grows to make room for its own full topic text; its row-mate shrinks
+     toward a compact minimum instead (see .hw-card.sibling-open). */
+  .hw-card.open { border-color: var(--accent); background: var(--bg-card-2); transform: none; flex-grow: 5; }
+  .hw-card.sibling-open { flex-grow: 0.3; min-width: 140px; }
+  .hw-card .hw-num { font-family: var(--serif); font-size: 1.05rem; color: var(--accent); font-weight: 600; flex-shrink: 0; }
+  .hw-card .hw-sep { color: var(--text-dim); flex-shrink: 0; }
+  .hw-card .hw-topic {
+    flex: 1 1 auto;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+
+  /* Project cards: always one full-width card per row, open or closed,
+     same as the Projects/Research showcase cards. */
+  .proj-grid { display: flex; flex-direction: column; gap: 14px; }
+  .proj-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+  .proj-card.open { border-color: var(--accent); }
+  .proj-head { padding: 18px 20px; }
+  /* Only the whole-head-click cards (non-featured, course-only projects) get
+     the pointer cursor and hover-tint; a featured project's head is inert
+     text and its .proj-more button (below) is the only click target. */
+  .proj-head[role="button"] { cursor: pointer; }
+  .proj-head[role="button"]:hover h4 { color: var(--accent); }
+  .proj-head h4 { font-size: 1.1rem; margin: 0 0 6px; transition: color 0.2s ease; }
+  .proj-head .proj-desc { font-size: 0.9rem; color: var(--text-dim); margin: 0 0 12px; }
+  .proj-head .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  /* Featured project head: tag row + More/Less button on one line, button
+     pinned to the right, matching the showcase card's own bottom row. */
+  .proj-head-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .proj-head-foot .tag-row { flex: 1; }
+  .proj-more { flex-shrink: 0; }
+
+  /* Accordion drawer (shared by HW + projects + showcase cards)
+     -----------------------------------------------------------
+     Animates grid-template-rows 0fr -> 1fr, which resolves to the content's
+     REAL height. The old max-height:0 -> 2600px version spent the whole
+     easing curve on a 2600px range while the content only needed ~900px,
+     so the part you could actually see was over in a third of the time and
+     the open read as a snap. This also removes the 2600px ceiling that
+     would have clipped a long drawer. */
+  .drawer {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.35s ease;
+  }
+  .drawer.open { grid-template-rows: 1fr; opacity: 1; }
+  /* The 0fr row only collapses if the row's own content can be clipped. */
+  .drawer > .drawer-inner { overflow: hidden; min-height: 0; }
+  /* the course content area fades during course switches (set inline in JS) */
+  .course-content { transition: opacity 0.3s ease; }
+  .drawer-inner { padding: 4px 20px 22px; }
+  .hw-drawer .drawer-inner { padding: 0; }
+
+  /* Close button sits in its own bar ABOVE the PDF (right-aligned) so it never
+     overlaps the browser's native PDF toolbar (download / print icons). */
+  .pdf-wrap { position: relative; }
+  .pdf-toolbar { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+  .pdf-close {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    padding: 5px 11px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .pdf-close:hover { border-color: var(--meta); color: var(--meta); background: var(--bg-card-2); }
+
+  .pdf-frame {
+    width: 100%;
+    height: 600px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--pdf-bg);
+  }
+  /* In focus mode the viewer fills the full width and 80% of the screen height */
+  .focus-mode .pdf-frame,
+  .focus-mode .pdf-placeholder { height: 80vh; }
+  .pdf-placeholder {
+    width: 100%;
+    height: 600px;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    background: var(--bg-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    padding: 24px;
+    gap: 8px;
+  }
+  .pdf-placeholder .pp-icon { opacity: 0.5; }
+  .pdf-placeholder .pp-icon svg { width: 34px; height: 34px; }
+  .pdf-placeholder code { color: var(--accent); font-size: 0.82rem; background: var(--bg-card); padding: 2px 7px; border-radius: 4px; }
+
+  .redaction-notice {
+    margin-top: 14px;
+    padding: 14px 18px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--meta);
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+  .redaction-notice p { margin: 0; font-size: 0.88rem; color: var(--text-dim); flex: 1; min-width: 220px; }
+
+  .proj-block { margin-top: 22px; }
+  .proj-block-label {
+    font-size: 0.74rem;
+    color: var(--text-dim);
+    margin: 0 0 10px;
+  }
+  .drawer-close {
+    margin-top: 18px;
+    display: inline-flex;
+  }
+
+  /* ===========================================================
+     CERTIFICATES
+     =========================================================== */
+  .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+  .cert-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .cert-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 22px -14px rgba(0, 0, 0, 0.4); }
+  .cert-card.reveal { transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
+  .cert-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--bg-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .cert-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .cert-body { padding: 16px 18px; }
+  .cert-body h4 { font-size: 1.02rem; margin: 0 0 6px; }
+  .cert-body .cert-meta { font-size: 0.83rem; color: var(--accent); margin: 0 0 8px; }
+  .cert-body .cert-summary { font-size: 0.86rem; color: var(--text-dim); margin: 0; }
+  /* A caveat about the certificate itself (e.g. issued after a delay),
+     set apart from the summary so it doesn't read as part of the course
+     description. */
+  .cert-body .cert-note { font-size: 0.8rem; color: var(--meta); font-style: italic; margin: 8px 0 0; }
+
+  /* ===========================================================
+     TEACHING
+     =========================================================== */
+  .teach-group { margin-bottom: 26px; }
+  .teach-group h3 {
+    font-size: 1rem;
+    color: var(--meta);
+    margin: 0 0 12px;
+    font-family: var(--sans);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .teach-list { display: flex; flex-direction: column; gap: 8px; }
+  .teach-item {
+    padding: 12px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .teach-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .teach-item .tname { font-weight: 600; font-family: var(--serif); font-size: 1rem; }
+  .teach-item .tprof { color: var(--text-dim); font-size: 0.88rem; }
+  .teach-item .trole {
+    margin-left: auto;
+    font-size: 0.76rem;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--bg-soft);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  /* Head TA highlighted in the accent color */
+  .teach-item .trole.trole-head {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: var(--accent-border);
+    font-weight: 600;
+  }
+  .teach-item .tduties {
+    margin: 8px 0 0;
+    font-size: 0.86rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  /* ===========================================================
+     SKILLS
+     =========================================================== */
+  .skills-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .skills-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  .skill-col + .skill-col { padding-top: 20px; border-top: 1px solid var(--border); }
+  .skill-col h3 { font-size: 1rem; margin: 0 0 14px; color: var(--accent); }
+  .skill-col .pill-row { gap: 8px; }
+
+  /* ===========================================================
+     ABOUT / CONTACT
+     =========================================================== */
+  .about p { font-size: 1.02rem; text-align: justify; text-justify: inter-word; hyphens: auto; }
+  .contact-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 26px;
+  }
+  .contact-box .btn-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  /* ===========================================================
+     SCROLL REVEAL
+     -----------------------------------------------------------
+     .reveal starts hidden/offset; JS adds .in-view via
+     IntersectionObserver the first time an element enters the
+     viewport (see observeReveal() in the script below).
+     =========================================================== */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.in-view { opacity: 1; transform: none; }
+
+  /* ===========================================================
+     BACK TO TOP
+     -----------------------------------------------------------
+     Fixed in the bottom-right corner and hidden until the visitor has
+     scrolled down (the script toggles .show). Same vocabulary as
+     .btn-outline: accent border and icon on the card surface, filled
+     with the accent on hover. The hidden state uses visibility so the
+     button also leaves the tab order; the visibility change is delayed
+     on the way out so the fade still plays.
+     =========================================================== */
+  .to-top {
+    position: fixed;
+    right: max(24px, env(safe-area-inset-right));
+    bottom: max(24px, env(safe-area-inset-bottom));
+    z-index: 40;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border-radius: 999px;
+    border: 1px solid var(--accent-border);
+    background: var(--bg-card);
+    color: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px) scale(0.9);
+    transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                visibility 0s linear 0.4s,
+                background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  body.light .to-top { box-shadow: 0 8px 20px -10px rgba(23, 26, 33, 0.35); }
+  .to-top.show { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+  .to-top:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .to-top svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .to-top:hover svg { transform: translateY(-2px); }
+  @media print { .to-top { display: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .to-top, .to-top.show, .to-top:hover svg { transform: none; }
+    .showcase-more svg { transition: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .hero-text, .hero-photo { animation: none; }
+    /* Honor the preference for the rest of the page too, not just the reveal
+       animations: smooth scrolling, the page/tab crossfades, and the hover
+       lift on cards are all motion the same setting is asking us to drop. */
+    html { scroll-behavior: auto; }
+    .page.active { animation: none; }
+    .hw-card:hover, .cert-card:hover { transform: none; }
+    .drawer { transition: none; }
+  }
+
+  /* ===========================================================
+     RESPONSIVE
+     -----------------------------------------------------------
+     Below 760px: the link row becomes a hamburger-triggered dropdown
+     (brand + hamburger + theme-toggle stay on one row via the `order`
+     values below; .nav is display:none until .open, then takes its own
+     full-width row). Everything past the nav is the rest of the mobile
+     pass: touch targets, grids that would otherwise force horizontal
+     scroll at phone widths, and a couple of desktop-scaled numbers.
+     =========================================================== */
+  @media (max-width: 760px) {
+    .topbar-inner { padding: 12px 18px; gap: 12px; }
+    .topbar-actions { order: 1; margin-left: auto; }
+    .nav-toggle { display: block; }
+    .nav {
+      display: none;
+      order: 2;
+      width: 100%;
+      flex-direction: column;
+      gap: 2px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .nav.open { display: flex; }
+    /* Full-width, generously padded rows read as a mobile menu, not a
+       squeezed copy of the desktop link row, and clear the ~44px touch
+       target guideline the desktop underline-on-hover version doesn't
+       need to. */
+    .nav a { padding: 12px 6px; border-bottom: 1px solid var(--border); }
+    .nav a:last-child { border-bottom: none; }
+    .theme-toggle, .nav-toggle { width: 26px; height: 26px; }
+
+    .content { padding: 0 18px 100px; }
+    .hero { flex-direction: column-reverse; align-items: flex-start; gap: 22px; padding-top: 4px; }
+    .hero h1 { font-size: 1.9rem; }
+    .hero-photo { width: 128px; height: 128px; }
+
+    .courses-layout { flex-direction: column; }
+    .course-nav-col {
+      width: 100%;
+      position: static;
+    }
+    .course-nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+      overflow-x: auto;
+    }
+    /* The full-bleed PDF/report view still breaks out to 100vw on mobile,
+       but 40px of side padding is too much to give up on a ~360px phone. */
+    .courses-layout.focus-mode { padding: 0 16px; }
+
+    .skills-grid { grid-template-columns: 1fr; }
+    .cert-grid { grid-template-columns: 1fr; }
+    /* Two 220px-min cards side by side force horizontal squeeze/scroll
+       well before 760px; one per row avoids it entirely. */
+    .hw-row { flex-direction: column; }
+    .hw-card.open { flex-grow: 1; }
+    .hw-card.sibling-open { flex-grow: 1; min-width: 0; }
+    /* Closer to the corner on a phone, where 24px is a lot of screen. */
+    .to-top {
+      right: max(16px, env(safe-area-inset-right));
+      bottom: max(16px, env(safe-area-inset-bottom));
+    }
+  }
+</style>
+</head>
+<body class="dark">
+<script>
+  /* Apply saved theme ASAP to avoid a flash of the wrong theme. */
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t !== 'light' && t !== 'dark') t = 'dark';
+      document.body.classList.remove('dark', 'light');
+      document.body.classList.add(t);
+    } catch (e) { /* keep default dark */ }
+  })();
+</script>
+
+<!-- ============================ TOP NAV (static, scrolls away) ============================ -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">R.&nbsp;<span>Pourjafarian</span></div>
+    <nav class="nav" id="mainNav">
+      <a href="#about" class="active">About</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#courses">Courses</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#skills">Skills &amp; Certificates</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="topbar-actions">
+      <!-- Mobile only (see the 760px breakpoint): .nav is hidden and this
+           toggles it open as a full-width dropdown instead. -->
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mainNav">
+        <span class="ticon ticon-menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </span>
+        <span class="ticon ticon-x">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </span>
+      </button>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode" title="Toggle theme">
+        <span class="ticon ticon-moon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </span>
+        <span class="ticon ticon-sun">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ MAIN ============================ -->
+<main class="content">
+  <div class="inner">
+
+    <!-- ---------- ABOUT (default page, includes hero) ---------- -->
+    <section id="about" class="page about active">
+
+    <!-- HERO -->
+    <header class="hero" id="top">
+      <div class="hero-text">
+        <h1>Rouzbeh Pourjafarian</h1>
+        <p class="role">Structural Engineer</p>
+        <p class="meta">Sharif University of Technology<br />
+          B.Sc. in Aerospace Engineering | Grade: 18.99/20.00 (GPA: 4.00/4.00)<br />
+          M.Sc. in Structural Engineering | Grade: 18.22/20.00 (GPA: 4.00/4.00)</p>
+      </div>
+      <div class="hero-photo">
+        <img src="assets/photo.jpg" alt="Rouzbeh Pourjafarian"
+             onerror="this.style.display='none'; this.parentNode.insertAdjacentHTML('beforeend','<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:0.8rem;text-align:center;padding:14px&quot;>Add photo at<br>assets/photo.jpg</div>');" />
+      </div>
+    </header>
+
+      <div class="pill-row hero-tags">
+        <span class="pill">Composite Materials</span>
+        <span class="pill">Agentic AI</span>
+        <span class="pill">Digital Twins</span>
+        <span class="pill">Structural Health Monitoring</span>
+        <span class="pill">FEM</span>
+      </div>
+
+      <h2 class="reveal">About</h2>
+      <p>
+I'm an M.Sc. student in structural engineering. My B.Sc. was in aerospace engineering, and during it I looked across its fields for the one I was drawn to; structures caught my attention, so I did my thesis on structural health monitoring. Alongside my studies I worked in student groups, where I learned teamwork, team and time management, and to be receptive to feedback. My GPA admitted me directly to the M.Sc. as an exceptional-talent student, and I'm now working on composite structural design with agentic AI as my M.Sc. thesis. For my PhD I want to join a lab with a dynamic, real-world-facing research environment, where I can keep learning and work on new methods for solving engineering problems.
+      </p>
+
+
+      <!-- Upload your CV as assets/cv.pdf to enable this button -->
+      <div class="btn-row" style="margin-top: 24px;">
+        <a class="btn btn-cv" href="assets/cv.pdf" download="Rouzbeh_Pourjafarian_CV.pdf" data-guard>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>Download CV
+        </a>
+      </div>
+
+    </section>
+
+    <!-- ---------- RESEARCH & PROJECTS ----------
+         Cards are generated from RESEARCH_DATA using the same showcase-card
+         model as Projects: full title, thumbnail, a clamped summary when
+         collapsed, and the full write-up behind a click. -->
+    <section id="research" class="page">
+      <h2 class="reveal">Research experience</h2>
+      <p class="course-sub" id="researchCount"><!-- populated by JS --></p>
+      <div class="cproj-grid" id="researchGrid"><!-- populated by JS --></div>
+    </section>
+
+    <!-- ---------- PROJECTS ----------
+         Every card is generated from data (COURSES_DATA projects marked
+         `featured` + EXTRA_PROJECTS), so nothing here is kept in sync by hand. -->
+    <section id="projects" class="page">
+      <h2 class="reveal">Projects</h2>
+      <p class="course-sub" id="projectsCount"><!-- populated by JS --></p>
+      <div class="cproj-grid" id="courseProjGrid"><!-- populated by JS --></div>
+    </section>
+
+    <!-- ---------- COURSES ---------- -->
+    <section id="courses" class="page">
+      <h2 class="reveal">Courses</h2>
+      <div class="courses-layout">
+        <div class="course-nav-col">
+          <nav class="course-nav" id="courseNav"><!-- populated by JS --></nav>
+          <p class="course-nav-note">Some content is redacted for privacy. Need the full version? <a href="#contact">Get in touch</a></p>
+        </div>
+        <div class="course-content" id="courseContent"><!-- populated by JS --></div>
+      </div>
+    </section>
+
+    <!-- ---------- TEACHING ---------- -->
+    <section id="teaching" class="page">
+      <h2 class="reveal">Teaching Assistant</h2>
+      <p class="course-sub" id="teachCount"><!-- populated by JS --></p>
+      <div id="teachContainer"><!-- populated by JS --></div>
+    </section>
+
+    <!-- ---------- SKILLS & CERTIFICATES ----------
+         Both answer the same question: what this person knows and has been
+         credentialed in. This is different from Research/Projects/Courses,
+         which answer what they have actually done. -->
+    <section id="skills" class="page">
+      <h2 class="reveal">Skills</h2>
+      <div class="skills-box reveal">
+        <div class="skills-grid">
+          <div class="skill-col">
+            <h3>Software</h3>
+            <div class="pill-row">
+              <span class="pill">ABAQUS</span>
+              <span class="pill">SolidWorks</span>
+              <span class="pill">CATIA</span>
+              <span class="pill">COMSOL</span>
+              <span class="pill">MATLAB</span>
+            </div>
+          </div>
+          <div class="skill-col">
+            <h3>Programming</h3>
+            <div class="pill-row">
+              <span class="pill">Python</span>
+              <span class="pill">C++</span>
+            </div>
+          </div>
+          <div class="skill-col">
+            <h3>Tools</h3>
+            <div class="pill-row">
+              <span class="pill">LangChain</span>
+              <span class="pill">LangGraph</span>
+              <span class="pill">CrewAI</span>
+              <span class="pill">TensorFlow</span>
+              <span class="pill">PyTorch</span>
+              <span class="pill">Scikit-learn</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="reveal" style="margin-top: 48px;">Online certificates</h2>
+      <div class="cert-grid" id="certGrid"><!-- populated by JS --></div>
+    </section>
+
+    <!-- ---------- CONTACT ---------- -->
+    <section id="contact" class="page">
+      <h2 class="reveal">Contact</h2>
+      <div class="contact-box reveal">
+        <div class="btn-row">
+          <div class="contact-item">
+            <a class="btn btn-outline contact-btn" href="mailto:rouzbehpourjafarian@gmail.com">
+              <svg viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>Email
+            </a>
+            <p class="contact-handle">rouzbehpourjafarian@gmail.com</p>
+          </div>
+          <div class="contact-item">
+            <a class="btn btn-outline contact-btn" href="https://www.linkedin.com/in/rouzbeh-pourjafarian/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>LinkedIn
+            </a>
+            <p class="contact-handle">linkedin.com/in/rouzbeh-pourjafarian</p>
+          </div>
+          <div class="contact-item">
+            <a class="btn btn-outline contact-btn" href="https://t.me/rouzbeh_p" target="_blank" rel="noopener">
+              <svg viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M446.7 98.6l-67.6 318.8c-5.1 22.5-18.4 28.1-37.3 17.5l-103-75.9-49.7 47.8c-5.5 5.5-10.1 10.1-20.7 10.1l7.4-104.9 190.9-172.5c8.3-7.4-1.8-11.5-12.9-4.1L117.8 284 16.2 252.2c-22.1-6.9-22.5-22.1 4.6-32.7L418.2 66.4c18.4-6.9 34.5 4.1 28.5 32.2z"/></svg>Telegram
+            </a>
+            <p class="contact-handle">t.me/rouzbeh_p</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Back to top: hidden until the page is scrolled down (see the script). -->
+<button class="to-top" id="toTop" type="button" aria-label="Back to top" title="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg>
+</button>
+
+<!-- ============================ SCRIPT ============================ -->
+<script>
+/* =================================================================
+   CONTACT CONSTANTS  (used inside redaction notices)
+   ================================================================= */
+const CONTACT_EMAIL    = "rouzbeh.pourjafarian@ae.sharif.edu";
+const CONTACT_LINKEDIN = "https://www.linkedin.com/in/rouzbeh-pourjafarian/";
+
+/* =================================================================
+   ICONS  (inline SVGs, one consistent stroke language; see the CV /
+   theme-toggle icons above for the same style. Used in place of raw
+   Unicode glyphs/emoji so every icon on the site is drawn, not typed.)
+   ================================================================= */
+const ICON_CLOSE = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-2px;margin-right:5px"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+const ICON_FILE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="8" y1="13" x2="16" y2="13"></line><line x1="8" y1="17" x2="13" y2="17"></line></svg>`;
+const ICON_MAIL = `<svg width="14" height="14" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" style="vertical-align:-2px;margin-right:5px"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>`;
+const ICON_GITHUB = `<svg width="14" height="14" viewBox="0 0 496 512" fill="currentColor" aria-hidden="true" style="vertical-align:-2px;margin-right:5px"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8z"/></svg>`;
+const ICON_LINKEDIN = `<svg width="14" height="14" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true" style="vertical-align:-2px;margin-right:5px"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>`;
+
+/* =================================================================
+   SCROLL REVEAL
+   -----------------------------------------------------------------
+   Fades/slides .reveal elements in the first time they enter the
+   viewport (once each), with a small stagger between neighbors.
+   Call observeReveal() again after adding new .reveal elements to
+   the DOM at runtime.
+   ================================================================= */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+function observeReveal(root) {
+  (root || document).querySelectorAll('.reveal:not(.reveal-bound)').forEach((el, i) => {
+    el.classList.add('reveal-bound');
+    el.style.transitionDelay = (i % 6) * 60 + 'ms';
+    revealObserver.observe(el);
+  });
+}
+
+/* =================================================================
+   COURSES_DATA
+   -----------------------------------------------------------------
+   This is the ONLY thing the owner edits to manage course content.
+   - Each top-level key is the course SLUG (kebab-case). It also names
+     the asset folder:  assets/courses/<slug>/
+   - homeworks[].id   -> file at assets/courses/<slug>/hw/HW<id>.pdf
+   - projects[].slug  -> folder assets/courses/<slug>/projects/<slug>/
+        report.pdf, slides.pdf live inside that folder.
+   - hasReport / hasSlides / hasCode toggle which blocks render.
+   - code (string) is the GitHub URL, shown only when hasCode is true.
+   ================================================================= */
+const COURSES_DATA = {
+  "advanced-aircraft-structures": {
+    name: "Advanced Aircraft Structures",
+    instructor: "Dr. Kouchakzadeh",
+    instructorUrl: "https://sharif.edu",
+    homeworks: [
+      { id: 1, topic: "Stress-strain transformation &amp; Airy stress functions" },
+      { id: 2, topic: "Energy methods (Castigliano &amp; Rayleigh-Ritz)" },
+      { id: 3, topic: "Unsymmetric bending &amp; shear flow in open sections" },
+      { id: 4, topic: "Torsion &amp; shear flow in thin-walled sections" }
+    ],
+    projects: []
+  },
+
+  "advanced-engineering-mathematics": {
+    name: "Advanced Engineering Mathematics",
+    instructor: "Dr. Emami",
+    instructorUrl: "https://sharif.edu",
+    homeworks: [
+      { id: 1, topic: "Linear systems, determinants &amp; matrix rank" },
+      { id: 2, topic: "Eigenvalues, Jordan form &amp; matrix functions" },
+      { id: 3, topic: "PCA &amp; SVM margin optimization" },
+      { id: 4, topic: "Lagrangian mechanics &amp; calculus of variations" },
+      { id: 5, topic: "Perturbation methods" }
+    ],
+    projects: []
+  },
+
+  "continuum-mechanics": {
+    name: "Continuum Mechanics",
+    instructor: "Dr. Hosseini Kordkheili",
+    instructorUrl: "https://sharif.edu",
+    homeworks: [
+      { id: 1, topic: "Index notation &amp; tensor identities" },
+      { id: 2, topic: "Tensor invariants &amp; linear elasticity" },
+      { id: 3, topic: "Vector calculus theorems &amp; curvilinear coordinates" },
+      { id: 4, topic: "Finite strain &amp; deformation gradient" }
+    ],
+    projects: []
+  },
+
+  "advanced-structural-analysis-design": {
+    name: "Advanced Structural Design",
+    instructor: "Dr. Haddadpour",
+    instructorUrl: "https://sharif.edu",
+    homeworks: [],
+    projects: [
+      {
+        slug: "agentic-llm-wingbox-design",
+        kind: "Project",
+        featured: true,
+        period: "02/26 – 08/26",
+        summary: "Implementing a system that uses an LLM for decision-making in place of the engineer in the design process.",
+        title: "An Agentic LLM System for the Preliminary Structural Design of an Aircraft Wing Box",
+        problem: "Sizing an aircraft wing box is a design process built on decisions, and in traditional methods those decisions need an experienced engineer to make them: the alloy, the spar positions, the catalogue stringers, with many parameters to change and choose between at every step. Bending material in the covers, a spar web that buckles before it shears, ribs, joints, every margin pushed toward zero from above while the load envelope keeps moving with the structure's own weight: different fields have to be considered in the design, and they all have to be checked together rather than one at a time.",
+        approach: "I used the LLM as the decision-maker and Python code as the tool it calls to carry out the design and check the output of each analysis. The nine classical design phases become a LangGraph StateGraph over one shared, typed dossier, its backbone a reviewable prompt chain that fans spar web, ribs and joints out in parallel once the covers are sized, with a deterministic checker routing a failing design back to whichever node can fix its worst margin; material selection runs an Ashby structural index with alloy-family screening and a Pareto trade-off. Underneath, the sizing itself is a deterministic, unit-tested Python translation of Niu, Megson and Roskam.",
+        results: "The course's own hand-worked cross-section is reproduced to tabulated precision as an automated acceptance gate, and rebuilding it surfaced four notation and arithmetic slips in the reference itself, each now pinned by a test. Run live against a published METU master's design of a PC-21 class trainer wing, the pipeline converged on 131.9 to 132.4 kg against that thesis's own optimized 125.9 kg, about 5% high, with the gap traced to the discrete stringer catalogue used here against the thesis's continuous search. I used Abaqus to validate the output of the design, building a 2024 model from the converged geometry that balanced the root reaction against the applied shear.",
+        figures: [
+          { file: "pic2.jpg", caption: "The lecture cross-section as the live model converged it: NACA 2412 silhouette, box between the spar stations it chose, and every stringer drawn at its real catalogue profile." },
+          { file: "pic3.jpg", caption: "The converged METU wing box solved in Abaqus 2024, contoured on displacement magnitude, root encastred at bottom left." }
+        ],
+        tags: ["AI agent", "LangGraph", "ABAQUS"],
+        hasReport: true,
+        hasSlides: false,
+        hasCode: false,
+        code: ""
+      }
+    ]
+  },
+
+  "composite-material-damage-mechanics": {
+    name: "Composite Material Damage Mechanics",
+    instructor: "Dr. Hosseini Kordkheili",
+    instructorUrl: "https://sharif.edu",
+    homeworks: [
+      { id: 1, topic: "Classical lamination theory" },
+      { id: 2, topic: "Off-axis compliance &amp; UMAT stress invariants" },
+      { id: 3, topic: "Composite tube under axial-torsion loading" }
+    ],
+    projects: [
+      {
+        slug: "abaqus-user-subroutines",
+        kind: "Presentation",
+        title: "User Subroutines in Abaqus",
+        description: "A tutorial presentation on writing Abaqus user subroutines (UMAT) in Fortran, covering the theoretical minimum, how Abaqus solves nonlinear problems, UMAT anatomy, a worked example, and how to run one in practice.",
+        tags: ["ABAQUS", "Fortran", "UMAT"],
+        hasReport: false,
+        hasSlides: true,
+        hasCode: false,
+        code: ""
+      },
+      {
+        slug: "hill-yield-criterion",
+        kind: "Presentation",
+        title: "Anisotropic Yield Criterion of Hill",
+        description: "Where the Hill anisotropic yield criterion comes from, and the assumptions it rests on.",
+        tags: [],
+        hasReport: false,
+        hasSlides: true,
+        hasCode: false,
+        code: ""
+      },
+      {
+        slug: "continuum-damage-mechanics-overview",
+        kind: "Presentation",
+        title: "Continuum Damage Mechanics",
+        description: "A theoretical overview of continuum damage mechanics, prepared as background for the course project: damage measures and definitions, thermodynamics, damage growth equations and life prediction in structures.",
+        tags: [],
+        hasReport: false,
+        hasSlides: true,
+        hasCode: false,
+        code: ""
+      },
+      {
+        slug: "cdm-neural-network-reproduction",
+        kind: "Project",
+        featured: true,
+        period: "02/26 – 08/26",
+        summary: "Reproducing a published article that replaces an Abaqus UMAT subroutine with a Neural Network, drawing on experience with both UMAT subroutines and Neural Network training.",
+        title: "A From-Scratch Reproduction of a Neural-Network Surrogate for Continuum Damage Mechanics in Composite Laminates",
+        problem: "Composite laminates are usually analysed with a continuum damage mechanics model written as an Abaqus UMAT. The model is accurate but slow, because every integration point at every increment evaluates a nonlinear damage law and assembles a material Jacobian. Yan, Zou, Ilkhani and Jones (2020) proposed replacing that with three small Neural Networks trained once on a mesoscale unit cell, and reported an 11.9 times speed-up alongside close agreement with a 3D reference solution.",
+        approach: "I rebuilt the paper from its text and published figures: the Linde-type damage model, the periodic unit cell and its boundary conditions, the training dataset, and the three networks, ported to PyTorch one for one with layer widths, activations, losses and optimisers matched to the paper's own description. The first network predicts homogenised stress, the second damage onset and the third the failure mode, and all three run inside a macro-scale UMAT with a frozen undamaged Jacobian, so a full CDM evaluation collapses into three forward passes. For quantities the paper never gives, among them fracture energies, specimen width and training hyperparameters, I pulled from an independent source or calibrated against its own curves and marked each one in the report; I wrote down five acceptance criteria before running any of it.",
+        results: "All five acceptance criteria pass. The regression network reaches R² = 0.9997 on the paper's own held-out load path against a 0.99 target, the two classifiers reach 98.0% and 99.0%, and the speed-up lands between 5.2 and 8.6 times depending on how the CPU counts are matched. On the open-hole plate the surrogate peaks at 12.8043 kN against the paper's 12.8170 kN, a difference of 0.10%. Two of the paper's own reported results did not carry over, though, and both trace back to the same cause: the fibre direction needs far more strain than the matrix to reach the same damage level, so the fibre-before-matrix damage ordering the paper reports came out reversed here, and the four-class failure taxonomy collapses to two reachable classes for this laminate, since the fibre-only and both-damaged states never occur.",
+        figures: [
+          { file: "pic2.jpg", width: 860, caption: "The three networks, ported one for one from the paper: stress regression (3-60-50-3, tanh), damage initiation (3-8-10-2, ReLU) and failure mode (3-12-20-4, ReLU), each with its loss and optimiser." },
+          { file: "pic3.jpg", width: 680, caption: "Fibre damage (left) and matrix damage (right) around the hole. The top two rows are this reproduction at u = 0.9828 and 1.0568 mm; underneath are the paper's own contours from its Figures 13 and 14. Contour limits fixed between 0 and 1." }
+        ],
+        tags: ["Neural Network", "ABAQUS", "Subroutine", "Fortran UMAT", "PyTorch"],
+        hasReport: true,
+        hasSlides: false,
+        hasCode: false,
+        code: ""
+      }
+    ]
+  },
+
+  "optimal-design": {
+    name: "Multidisciplinary Optimal Design",
+    instructor: "Dr. Khodaygan",
+    instructorUrl: "http://sharif.ir/~khodaygan/",
+    homeworks: [
+      { id: 1, topic: "Optimization problem formulation" },
+      { id: 2, topic: "Interior penalty function method" },
+      { id: 3, topic: "Linear programming (Simplex) &amp; nonlinear programming (Evolutionary algorithm)" },
+      { id: 4, topic: "Multi-objective ideal &amp; nadir points" },
+      { id: 5, topic: "Least squares curve fitting &amp; hypothesis testing of sample means" }
+    ],
+    projects: [
+      {
+        slug: "llm-agent-composite-optimization",
+        kind: "Project",
+        featured: true,
+        period: "02/26 – 07/26",
+        summary: "Handing the formulation of a multi-objective composite optimization problem, and its repair when it fails, to an LLM agent.",
+        title: "Multi-Objective Optimization of Composite Structures Using a LLM Agent",
+        problem: "In an optimization problem, the designer first has to understand the subject before writing its formulation: the objectives, the constraints, the design variables. Here I used an LLM agent to do that for the multi-objective optimization of composite structures, writing the problem before the run and, if the Pareto front comes back degenerate, reading the output, working out what went wrong and rewriting the formulation itself rather than leaving that loop to the designer.",
+        approach: "I built an agent that takes a design description in plain language, extracts a mathematical formulation from it, then passes that to NSGA-II through a typed contract, with the language model handling only the formulation step and a deterministic kernel on classical laminated plate theory computing every physical quantity. The graph I designed runs intake, knowledge retrieval, formulation, validation, human approval, compilation and the search itself, then deterministic, threshold-based failure detection: when a front comes back degenerate, the diagnosis nodes name the cause and the model picks one remedial action from a closed list, which rewrites the specification and sends it back through validation. I split model use by node, giving a lighter model to intake and reporting and a stronger one to formulation, repair and explanation.",
+        results: "In a blind test against a published composite-plate study, the formulation the agent wrote for itself produced exactly the same Pareto front as the hand-written one under an equal search budget: all 37 designs, the same layer counts and stacking sequences, and no difference in buckling load. The deterministic kernel reproduced the paper's analytical numbers to a worst case of 0.001%. Given a deliberately broken request, the feedback loop found the fault within four iterations, revised the formulation twice, and raised the front's hypervolume by 4.17% and then by 36.13%.",
+        figures: [
+          { file: "pic2.jpg", caption: "Buckling load factor against laminate thickness for the published two-objective problem, at a 15° and a 45° ply-angle interval. The agent's own formulation (dashed) reproduces the hand-written one (solid) almost exactly, and both track the paper's own published points." },
+          { file: "pic3.jpg", caption: "The same blind test on the paper's single-objective case, at five ply-angle intervals: the agent's formulation (dark) matches the hand-written reproduction (light) and both sit above the paper's own reported optimum." }
+        ],
+        tags: ["Optimization", "Genetic Algorithm", "NSGA-II", "LangGraph", "AI Agent"],
+        hasReport: true,
+        hasSlides: false,
+        hasCode: false,
+        code: ""
+      }
+    ]
+  },
+
+  "theory-of-plates-and-shells": {
+    name: "Theory of Plates and Shells",
+    instructor: "Dr. Fallah",
+    instructorUrl: "http://sharif.ir/~fallah/",
+    homeworks: [
+      { id: 1, topic: "Kirchhoff plate bending" },
+      { id: 2, topic: "Ritz method for a clamped triangular plate" },
+      { id: 3, topic: "Ritz method for a rectangular plate" },
+      { id: 4, topic: "Biaxial compression plate buckling (Navier's approach)" },
+      { id: 5, topic: "Axisymmetric circular plate bending" },
+      { id: 6, topic: "Orthotropic stiffened plate bending" },
+      { id: 7, topic: "Cylindrical shell discontinuity stresses" }
+    ],
+    projects: [
+      {
+        slug: "plate-vibration",
+        kind: "Presentation",
+        title: "An improved plate deep energy method for the bending, buckling and free vibration problems of irregular Kirchhoff plates",
+        description: "A deep energy method for bending, buckling and free vibration of irregular Kirchhoff plates, without penalty terms: an R-function builds a distance function enforcing the Dirichlet boundary constraints directly, while virtual nodes handle the derivative-based constraints, avoiding the convergence issues penalty methods can cause on complex or mixed boundary conditions. (Huang &amp; Peng, 2024, Engineering Structures 301, 117235.)",
+        tags: [],
+        hasReport: false,
+        hasSlides: true,
+        hasCode: false,
+        code: ""
+      }
+    ]
+  }
+};
+
+/* =================================================================
+   EXTRA_PROJECTS
+   -----------------------------------------------------------------
+   Course projects whose course is NOT in COURSES_DATA (no homework or
+   syllabus page of its own), so they live here instead. They render with
+   the same card as the featured ones.
+     base        -> asset folder; pic1.jpg, pic2.jpg, pic3.jpg are read from it
+     summary     -> the two lines shown on the collapsed card
+     problem     -> "The problem" paragraph in the open card
+     approach    -> ["para", "para"] under "The approach"
+     results     -> "What came out" paragraph
+     figures     -> [{ file, caption }] shown under the results
+   No report PDF and no code download: the showcase cards offer no files.
+   ================================================================= */
+const EXTRA_PROJECTS = [
+  {
+    slug: "stol-air-taxi",
+    base: "assets/projects/stol-air-taxi",
+    course: "Aircraft Design I & II · Dr. Banazadeh",
+    period: "10/24 – 01/25, 03/25 – 07/25",
+    title: "Hybrid-Electric STOL Air Taxi",
+    summary: "Conceptual design of a hybrid-electric STOL air taxi with a six-person team, with my duty being the wing design, then individually carrying it into a structural design problem.",
+    problem: "Aircraft Design I and II are two consecutive courses sharing one continuous project. We were given an RFP for a hybrid-electric STOL air taxi built around distributed electric propulsion: four to six passengers plus a pilot, a 300 nautical mile range with a 10% reserve, at least 150 knots cruise, takeoff and landing within 300 feet, and FAR Part 23 certification. A six-person team took that brief through conceptual and then preliminary design. My share of the work was the wing design, the stabilizers, and the landing gear.",
+    approach: "Aircraft Design I started from a historical weight-fraction estimate cross-checked against comparable aircraft, then a matching diagram set the wing and power loading against the stall, takeoff, landing, climb, cruise and ceiling constraints, with my part covering the weight sensitivity study and the stall, takeoff and landing sizing on that diagram; a weighted decision matrix picked the configuration, a high tapered wing with a conventional tail and retractable tricycle gear, and I sized the wing's initial layout, the stabilizers and the landing gear, cross-checked against a weight-and-balance CG range and built out in SolidWorks. Aircraft Design II then took the wing from that conceptual layout into a detailed individual design and analysis: I built 3D SolidWorks models of the wing, the stabilizers and the engine-wing interfaces, and ran ABAQUS stress, deformation and buckling analyses against the loads implied by the distributed-propulsion layout and the STOL mission.",
+    results: "Aircraft Design I converged on a 5,612 lb aircraft with a 16.98 m² wing at aspect ratio 10 spanning 13 m, its empennage sized by the tail volume coefficient method and the layout validated with a full weight-and-balance check and a 5-view SolidWorks model. Aircraft Design II delivered a final wing, stabilizer and engine-interface design that met the STOL-specific safety, weight and performance requirements the ABAQUS analyses were run against.",
+    tags: ["Team Work", "SolidWorks", "ABAQUS", "FEM"],
+    figures: [
+      { file: "pic2.jpg", caption: "Team design poster for the AeroNEX hybrid-electric STOL air taxi, summarizing the mission requirements, configuration and sizing results." },
+      { file: "pic3.jpg", width: 620, caption: "AeroNEX, the designed aircraft." }
+    ]
+  },
+  {
+    slug: "nanofluid-prediction",
+    base: "assets/projects/nanofluid-prediction",
+    course: "Heat Transfer · Dr. Javadi",
+    period: "02/25 – 04/25",
+    title: "Heat Transfer Coefficient Prediction of Nanofluids",
+    summary: "Predicting the heat transfer coefficient of nanofluids from their physical properties with machine learning, and finding which properties matter most.",
+    problem: "The convective heat transfer coefficient of a nanofluid depends on how the fluid flows and what is suspended in it, and measuring it for every combination is not practical. The brief was to predict it with machine learning from a synthetic dataset of 10,000 samples, using flow rate, inlet temperature, nanoparticle concentration, viscosity, density and thermal conductivity, then compare models and explain which properties drive the prediction.",
+    approach: "The team checked the data first, finding no missing values, no outliers by the 1.5 IQR rule and no categorical columns, and a correlation matrix showing concentration, density and thermal conductivity moving in perfect lockstep with each other, each correlating at 0.97 with the target; they compared MinMax and standard scaling on the feature distributions, then split 80/20 into 8,000 training and 2,000 test samples. They trained four regressors with scikit-learn and scored them on MSE, MAE and R²: linear regression, a degree-2 polynomial fit, a 100-tree random forest and an MLP with one hidden layer of 100 neurons, then tuned the forest and the MLP with GridSearchCV, added ridge regression and pairwise interaction terms, ran 5-fold cross-validation and a voting ensemble, and ran permutation importance and SHAP on the random forest to see which inputs it leans on.",
+    results: "All four models predict the coefficient almost exactly, with R² between 0.9972 and 0.9978 and a mean absolute error of 4.1 to 4.6 W/m²K on a target spanning about 200 to 690. Linear regression was best on all three measures, with MSE 25.8 against 32.9 for the random forest, and tuning the forest and the MLP did not change that ranking. Permutation importance puts thermal conductivity, concentration and density first and flow rate fourth, while viscosity scores almost zero despite its 0.70 correlation with the target.",
+    figures: [
+      { file: "pic2.jpg", width: 760, caption: "Predicted against actual heat transfer coefficient on the 2,000 test samples for all four models, each lying along the ideal-fit line." },
+      { file: "pic3.jpg", width: 620, caption: "Correlation matrix of the six properties and the target. Concentration, density and thermal conductivity are perfectly correlated with each other, and each correlates at 0.97 with the heat transfer coefficient." }
+    ],
+    tags: ["pandas", "NumPy", "scikit-learn", "MLP regression"]
+  },
+  {
+    slug: "ai-research-assistant",
+    base: "assets/projects/ai-research-assistant",
+    course: "Foundations of Data Science · Dr. Khalaj",
+    period: "12/24 – 01/25",
+    title: "Scholarly Citation Network Analysis & Research Assistant",
+    summary: "Building a research assistant that finds papers by topic or author, on top of a network analysis of scholarly citations.",
+    problem: "Finding the right papers in an unfamiliar field is slow, and keyword search returns too much. A scholarly dataset also records who cites whom and who writes with whom, and that network says a lot about which authors and papers belong together. This project analyses those links, predicts how many citations a paper will get, and builds a research assistant that finds papers by topic or by author.",
+    approach: "I used a dataset of scholarly articles published through 2017, crawling papers from Semantic Scholar across five AI subfields to hold back as a test set, then ran network analysis over the citation, co-authorship and venue graphs, including PageRank, degree centrality and how network density moves across decades, and detected author communities with greedy modularity, label propagation and Girvan-Newman, compared on average clustering coefficient and named from keywords pulled out of their own papers. I trained a citation-count regressor on title and abstract embeddings plus publication year with a RandomForestRegressor tuned through GridSearchCV, and added a graph Neural Network over the co-authorship network in PyTorch Geometric as a second route to the same target; on top of that I built a retrieval-augmented assistant, with paper embeddings indexed in FAISS, topic queries expanded with KeyBERT, author names lifted out of a question by spaCy named-entity recognition, and an optional LLM pass that summarises what came back.",
+    results: "Girvan-Newman scored the highest average clustering coefficient, 0.7771, with greedy modularity at 0.7770 and label propagation at 0.7757. The citation regressor did not carry over to the 2,350 crawled test papers: test R² came out at -0.26 with a mean absolute error of 1,217 citations, which the report puts down to the time gap and the new topics and authors in recent papers. The assistant answers both topic and author queries, returning matching papers with their authors and abstracts and an LLM summary on request.",
+    figures: [
+      { file: "pic2.jpg", caption: "Total citations against number of publications for each author, with the fitted regression line (R² = 0.34) used to predict the citation count for a given author." },
+      { file: "pic3.jpg", caption: "The assistant answering an author query. spaCy lifts the name out of the question, and the matching papers come back with their authors and abstracts." }
+    ],
+    tags: ["Scrawling", "RAG", "KeyBERT"]
+  }
+];
+
+/* =================================================================
+   RESEARCH_DATA
+   -----------------------------------------------------------------
+   Renders through the same showcaseCardHtml() as Projects, so the two
+   pages read as one card model: full title, thumbnail, a clamped
+   summary when collapsed, the full write-up behind a click.
+   `course` doubles as the role/lab line shown under the title.
+   thumbnail -> assets/research/<id>/pic1.jpg   (collapsed card)
+   Write-up, same fields as the Projects showcase cards:
+     problem       -> "The problem"
+     approach      -> "The approach" (string or array of paragraphs)
+     results       -> "What came out", with `figures` [{ file, caption, width }]
+   For work still in progress:
+     approachLabel -> renames the approach block (e.g. "Proposed solution")
+     plan          -> "Planned work" (string or array), used instead of results
+     schedule      -> [{ term, work }] shown as a timeline under "Schedule"
+   Older entries may still use abstract / achievements / hasFigure instead.
+   No report PDF: the cards are text-only by design.
+   ================================================================= */
+const RESEARCH_DATA = [
+  {
+    id: "msc-thesis-agentic-composite-design",
+    base: "assets/research/msc-thesis-agentic-composite-design",
+    noThumb: true,
+    course: "M.Sc. Thesis · Dr. Kouchakzadeh",
+    period: "02/26 – Present",
+    title: "Optimal design of stiffened composite laminates using LLM-based agentic AI",
+    summary: "Building a multi-agent LLM system for the preliminary design of stiffened composite laminates, with every number computed by a validated core.",
+    problem: "Composite design still relies on traditional methods that depend heavily on the operator's experience and require accounting for many separate factors, which adds significant complexity to the process. Newer methods such as Neural Networks and optimization algorithms carry the same limitation: each is built around a fixed set of objectives for one specific problem, so a change in the type of input is likely to break them. The design problem needs to be defined precisely and appropriately for whichever method is being used.",
+    approachLabel: "Proposed solution",
+    approach: "The proposal is a multi-agent system in which LLM agents lead the design: they plan, pull in design knowledge and requirements and check every result, following the analytical framework of a reference text on composite structures. Language models alone are not reliable enough for engineering, so the agents draw on a database of composite-material knowledge and design requirements, with every answer validated against references and existing solved problems rather than trusted on its own. The system grows by adding to that knowledge and database, so the same architecture adapts across different composite structural design problems instead of being rebuilt per configuration. For a composite, the agent must also reason about the layup, mechanical prerequisites and each theory's range of validity before proposing a design. Given the input requirements, the goal is for the system to return the most optimal design and best-suited structure.",
+    plan: [
+      "The work runs in four phases. The first phase is dedicated to studying composite materials, to build a better understanding of the design problem itself before any system is built around it. The second phase tests the approach on a simple design problem solved with an agent. The third phase studies agentic AI and its frameworks in more depth, to settle on an architecture suited to this design problem. The fourth phase builds the full system, then validates it and checks how reliable it is."
+    ],
+    schedule: [
+      { term: "Year 1 · Semester 2", work: "Studying composite materials to build a better understanding of the design problem." },
+      { term: "Year 1 · Summer",     work: "Testing a simple design problem solved with an agent." },
+      { term: "Year 2 · Semester 1", work: "Studying agentic AI and its frameworks to settle on a suitable architecture." },
+      { term: "Year 2 · Semester 2", work: "Building the full system, then validating it and checking its reliability." }
+    ],
+    tags: ["Agentic AI", "Composite Material", "LangGraph", "Optimization"]
+  },
+  {
+    id: "ifem-shm",
+    base: "assets/research/ifem-shm",
+    course: "Personal Research",
+    period: "07/25 – 08/25",
+    title: "Inverse finite element method for structural health monitoring",
+    summary: "Reconstructing structural deformation in real time from sparse strain sensors, and studying how that reconstruction could transfer to structures with little data of their own.",
+    problem: "Reconstructing a structure's deformed shape in real time from a handful of strain sensors, without knowing the loads or material behaviour driving that deformation, is the core problem shape sensing has to solve. A second, separate problem sits on top of it: a well-instrumented structure can build a reliable healthy-state baseline for damage detection, but a similar structure with only a few sensors cannot, so its diagnosis has to borrow from the first one's data despite the two never being identical.",
+    approach: "I worked through the iFEM formulation from its variational basis, where strains measured at discrete sensor locations feed a least-squares functional minimised over the nodal displacements, giving a pseudo-stiffness system I derived down to its shape-function and strain-displacement matrices for an 8-node hexahedral solid-shell element; solving that system reconstructs the full displacement field, and from it the stresses, the deformed shape and a strain-residual damage indicator, all without needing the external loads or material stiffness as inputs. I implemented this in Python and ran it on a simulated plate with 100 sensor locations and two seeded damage sites, comparing the baseline and damaged strain fields to recover both the location and severity of each site. For the second, population-based problem, I studied Transfer Component Analysis and worked through its formulation: a domain-adaptation method that maps a source structure's iFEM-reconstructed frequency response features and a target structure's directly measured features into a shared latent space with an RBF kernel and a Maximum Mean Discrepancy metric, where a new reading from the target structure would be flagged as damaged if its Mahalanobis distance to the healthy cluster passed a Monte Carlo threshold, letting a sparsely instrumented structure draw on a richer one's baseline instead of building its own from scratch.",
+    results: "The strain-sensor simulation recovered both seeded damage sites from the strain-residual field, with the estimated damage centroids landing close to the true locations on the 100-point sensor grid; the six-panel output tracks the mesh and sensor layout, the strain fields before and after damage, the time series at the affected sensors, and the final detection map side by side.",
+    figures: [
+      { file: "pic2.jpg", caption: "Strain sensor simulation on a 100-sensor plate: sensor layout with two seeded damage sites, strain fields before and after damage, strain time series at the sensors nearest the damage, and the resulting damage-detection map against the true locations." },
+      { file: "pic3.jpg", width: 420, caption: "The two-stage pipeline: a high-fidelity Abaqus model generates synthetic sensor data and a reference displacement field, iFEM reconstructs the displacement field from the sensor data alone on a coarser mesh, and the two are compared to check the reconstruction." }
+    ],
+    tags: ["FEM", "iFEM"]
+  },
+  {
+    id: "structural-health-monitoring",
+    base: "assets/research/structural-health-monitoring",
+    course: "Bachelor Thesis · Dr. Ali Abedian",
+    period: "02/25 – 07/25",
+    title: "Structural health monitoring: crack detection and localization",
+    summary: "Detecting and locating cracks in thin aluminium plates from the ultrasonic signals picked up by bonded piezoelectric sensors.",
+    problem: "Structures crack, and finding those cracks still means taking the structure out of service and inspecting it by hand. Thin-walled structures, in particular, need a monitoring method that works within their limited thickness. Bonded piezoelectric discs offer another route: launch an ultrasonic guided wave across the panel and read what arrives at a second disc. That raises several separate questions, of which this project addresses two: does a crack exist, and where is it?",
+    approach: "The work ran in three stages. The first was a review and comparison of the available methods, weighing vibration-based methods, acoustic emission, fibre-optic and distributed sensing, electromechanical impedance, infrared thermography, vision-based inspection and machine-learning diagnosis against each other, drawing mainly on journal papers and PhD-level work simplified to fit this scope; that comparison pointed to bonded PZT transducers driven with Lamb waves, and solving the Rayleigh-Lamb equations for a 1.6 mm aluminium plate at 200 kHz gave the S0 and A0 velocities, with the shorter A0 wavelength of 7.90 mm fixing the 0.8 mm element size the mesh had to hold. The second stage addressed whether a crack is even detectable, bonding two PZT discs to a plate in Abaqus, solving the discs in Standard and the plate in Explicit through a surface-based co-execution, and comparing sensor voltage healthy against cracked. The third stage addressed locating the crack: I grew the setup to four discs on a 400 mm plate for six sensing paths, swapped the continuous drive for a four-cycle Hann-windowed tone burst, turned wavelet energy per path into a damage index, and fed the six into a probability-based diagnostic imaging algorithm.",
+    results: "On the two-transducer path the crack drops peak amplitude by 19.5% and gives a signal difference coefficient of 0.989, which settles detection and says nothing about position. With four transducers the path through the crack loses 23.4% of its S0 amplitude while the two paths 110 mm away register nothing to four decimal places. PDI places the crack 10 mm from where it was put, about 2.5% of the plate span, against 75 mm for delay-and-sum on the same signals; the full-field wavefield difference shows it radiating from the right point.",
+    tags: ["ABAQUS", "Piezoelectric", "Lamb waves"],
+    figures: [
+      { file: "pic2.jpg", caption: "Damage-probability map from the four-transducer network. Green cross: the true crack. Cyan cross: the peak of the map, 10 mm away on a 400 mm plate." },
+      { file: "pic3.jpg", caption: "Peak S0 amplitude drop on each of the six sensing paths, annotated with how far that path passes from the crack." }
+    ]
+  },
+  {
+    id: "battery-thermal-system",
+    base: "assets/research/battery-thermal-system",
+    course: "RAeS Competition: Lyrebird Electric STOL Aircraft",
+    period: "06/22 – 08/22",
+    title: "Battery thermal system",
+    summary: "Cooling a battery pack for an electric STOL aircraft with a wing-mounted duct, simulated in COMSOL to run at about 25 °C against an 80 °C rated limit.",
+    abstract: "Compared radiator, air-blade and ducted cooling for the battery pack of an electric STOL aircraft, and chose the ducted design for its lower weight and simpler maintenance. Simulated the chosen duct in COMSOL Multiphysics with altitude-dependent air properties and turbulent flow, and added a desiccant chamber inside the duct to strip moisture from the cooling air before it reaches the battery box.",
+    achievements: "The simulation predicted a peak battery temperature of about 25 °C, well inside the battery's rated −30 °C to 80 °C operating range.",
+    tags: ["Team Work", "COMSOL", "Heat Transfer"],
+    figures: [
+      { file: "pic2.jpg", width: 500, caption: "The modeled cooling channel: a 2 m duct, 0.1 m by 0.15 m in cross-section, running the length of the battery box." },
+      { file: "pic3.jpg", width: 500, caption: "Simulated surface temperature along the duct: a peak of 25.12 °C at the inlet end, well inside the battery's 80 °C rated limit." }
+    ]
+  }
+];
+
+/* =================================================================
+   CERTIFICATES_DATA
+   -----------------------------------------------------------------
+   slug -> thumbnail at assets/certificates/<slug>.jpg
+   ================================================================= */
+const CERTIFICATES_DATA = [
+  {
+    slug: "llm-applications",
+    name: "LLM Applications Development",
+    issuer: "Quera College",
+    date: "09/25",
+    summary: "A practical course on building applications with LLMs: RAG, prompting patterns and agent workflows."
+  },
+  {
+    slug: "prompt-engineering",
+    name: "Prompt Engineering",
+    issuer: "Quera College",
+    date: "09/25",
+    summary: "How to design, structure and evaluate prompts that steer LLMs reliably."
+  },
+  {
+    slug: "chatbot-langchain-essentials",
+    name: "Personal Chatbot Development with LangChain Essentials",
+    issuer: "FaraDars",
+    date: "09/26",
+    summary: "Building a chatbot with LangChain: chains, memory and tool calling.",
+    note: "Course completed earlier; the certificate was issued later."
+  },
+  {
+    slug: "deep-learning-tensorflow-keras",
+    name: "Deep Learning with Python Using TensorFlow and Keras",
+    issuer: "FaraDars",
+    date: "09/26",
+    summary: "Building and training Neural Networks in Python with TensorFlow and Keras.",
+    note: "Course completed earlier; the certificate was issued later."
+  },
+  {
+    slug: "abaqus-scripting-python",
+    name: "Abaqus Scripting Fundamentals with Python",
+    issuer: "FaraDars",
+    date: "03/26",
+    summary: "Driving Abaqus/CAE with Python scripts instead of the GUI, from model setup through the scripting interface."
+  },
+  {
+    slug: "composite-materials-abaqus",
+    name: "Simulation of Composite Materials in Abaqus",
+    issuer: "Maktabkhooneh",
+    date: "03/26",
+    summary: "Modeling and simulating the mechanical behavior of composite materials in Abaqus."
+  }
+];
+
+/* =================================================================
+   TEACHING_DATA
+   -----------------------------------------------------------------
+   Grouped by semester. Edit freely: purely presentational.
+   ================================================================= */
+const TEACHING_DATA = [
+  {
+    semester: "Fall 2026",
+    entries: [
+      { course: "Aircraft Structures", professor: "Dr. Hosseini Kordkheili", role: "Head TA",
+        duties: "Conducted class sessions, prepared TA session slides, designed exercises, coordinated TA team, evaluated performance" }
+    ]
+  },
+  {
+    semester: "Fall 2025",
+    entries: [
+      { course: "Aircraft Structures", professor: "Dr. Kouchakzadeh", role: "Head TA",
+        duties: "Conducted TA sessions, designed and graded assignments and quizzes" },
+      { course: "Mechanics of Materials", professor: "Dr. Hosseini Kordkheili", role: "Head TA",
+        duties: "Prepared TA session slides, designed exercises, coordinated TA team, evaluated performance" },
+      { course: "Composite Materials", professor: "Dr. Fallah (Mechanical Eng. Dept.)", role: "TA",
+      duties: "Graded assignments and presentations"},
+      { course: "Foundations of Data Science", professor: "Dr. Khalaj (Electrical Eng. Dept.)", role: "TA",
+        duties: "Prepared lecture slides, designed and graded quizzes" }
+    ]
+  },
+  {
+    semester: "Spring 2025",
+    entries: [
+      { course: "Probability &amp; Statistics for Engineers", professor: "Dr. Kiani", role: "TA",
+        duties: "Designed and graded assignments and quizzes" }
+    ]
+  },
+  {
+    semester: "Fall 2024",
+    entries: [
+      { course: "Aircraft Structures", professor: "Dr. Kouchakzadeh", role: "TA",
+        duties: "Conducted TA sessions, designed and graded assignments and quizzes" }
+    ]
+  },
+  {
+    semester: "Fall 2023",
+    entries: [
+      { course: "Mechanics of Materials", professor: "Dr. Hosseini Kordkheili", role: "Head TA",
+        duties: "Conducted TA sessions, designed and graded assignments and quizzes, reported on TA and student performance" },
+      { course: "Dynamics", professor: "Dr. Sharifi", role: "TA",
+        duties: "Designed and edited homework and quiz notebooks" }
+    ]
+  },
+  {
+    semester: "Spring 2023",
+    entries: [
+      { course: "Introduction to Aerospace Engineering", professor: "Dr. Sharifi", role: "TA",
+        duties: "Developed presentation templates, evaluated and graded student presentations" }
+    ]
+  }
+];
+
+/* =================================================================
+   RENDER HELPERS
+   ================================================================= */
+
+// Every custom "clickable div" (hw-card, proj-head) is a role="button"
+// tabindex="0" element with an inline onclick for pointer users; this drives
+// the same handler from the keyboard (Enter / Space), matching native
+// <button> behavior.
+function activateOnKey(e, el, fn) {
+  if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+    e.preventDefault();
+    fn(el);
+  }
+}
+
+// Build a PDF viewer block. We render a styled placeholder by default so the
+// layout looks complete even before any files are uploaded. When the drawer
+// opens, loadPdfSlots() does a HEAD request for the file (same-origin on
+// GitHub Pages); if it exists, the placeholder is swapped for a real iframe.
+function pdfViewer(src) {
+  // The close button sits in a toolbar above .pdf-slot (outside it) so
+  // loadPdfSlots(), which replaces the slot's contents with an iframe,
+  // never wipes it out, and it can't overlap the PDF's native toolbar.
+  return `
+    <div class="pdf-wrap">
+      <div class="pdf-toolbar">
+        <button class="pdf-close" onclick="closePdf(this)" title="Close PDF">${ICON_CLOSE}Close</button>
+      </div>
+      <div class="pdf-slot" data-src="${src}">
+        <div class="pdf-placeholder">
+          <div class="pp-icon">${ICON_FILE}</div>
+          <div>PDF will appear here once uploaded to</div>
+          <code>${src}</code>
+        </div>
+      </div>
+    </div>`;
+}
+
+// For a homework whose work is a Jupyter notebook rather than a PDF: the
+// summary of what was done, plus a direct download link (browsers have no
+// built-in .ipynb viewer, so linking it is the honest option, with no iframe
+// to fake a preview with).
+function notebookBlock(hw, src) {
+  const filename = src.split('/').pop();
+  return `
+    <div style="padding-top:14px">
+      ${hw.summary ? `<p>${hw.summary}</p>` : ''}
+      <a class="btn btn-sm btn-outline" href="${src}" download data-guard>${ICON_FILE}Download notebook (${filename})</a>
+    </div>`;
+}
+
+// For every not-yet-resolved PDF slot inside a container, check if the file
+// exists and swap in an iframe when it does.
+function loadPdfSlots(container) {
+  container.querySelectorAll('.pdf-slot:not([data-resolved])').forEach(slot => {
+    slot.setAttribute('data-resolved', '1');
+    const src = slot.getAttribute('data-src');
+    fetch(src, { method: 'HEAD' })
+      .then(res => {
+        const type = res.headers.get('content-type') || '';
+        if (res.ok && !type.includes('text/html')) {
+          slot.innerHTML =
+            `<iframe class="pdf-frame" src="${src}" title="PDF viewer"></iframe>`;
+        }
+        // otherwise keep the placeholder
+      })
+      .catch(() => { /* offline / missing -> keep placeholder */ });
+  });
+}
+
+function redactionNotice() {
+  return `
+    <div class="redaction-notice">
+      <p>Some content is redacted for privacy. Need the full version?</p>
+      <a class="btn btn-sm btn-primary" href="mailto:${CONTACT_EMAIL}">${ICON_MAIL}Email</a>
+      <a class="btn btn-sm" href="${CONTACT_LINKEDIN}" target="_blank" rel="noopener">${ICON_LINKEDIN}LinkedIn</a>
+    </div>`;
+}
+
+/* =================================================================
+   PROJECT SHOWCASE CARDS
+   -----------------------------------------------------------------
+   One card component, fed from two sources, so nothing is written twice:
+     - COURSES_DATA projects marked `featured: true`
+     - EXTRA_PROJECTS (courses that have no page of their own)
+
+   Collapsed, the card shows the title, the course, two lines of summary,
+   and a thumbnail on the right. Opened, it reveals the full abstract and a
+   short "how it turned out" note, text only. The report and slide PDFs
+   stay on the course pages; the showcase never embeds one.
+
+   Thumbnail convention:  <base>/pic1.jpg
+     featured projects -> assets/courses/<course>/projects/<project>/pic1.jpg
+     EXTRA_PROJECTS    -> its own `base` + /pic1.jpg
+   A missing thumbnail collapses to a neutral placeholder, so the layout
+   is complete before any image is uploaded.
+   ================================================================= */
+function showcaseProjects() {
+  const out = [];
+  Object.keys(COURSES_DATA).forEach(slug => {
+    COURSES_DATA[slug].projects.forEach(p => {
+      if (!p.featured) return;
+      out.push({
+        id: `${slug}-${p.slug}`,
+        base: `assets/courses/${slug}/projects/${p.slug}`,
+        course: `${COURSES_DATA[slug].name} · ${COURSES_DATA[slug].instructor}`,
+        period: p.period,
+        title: p.title,
+        summary: p.summary,
+        problem: p.problem,
+        approach: p.approach,
+        results: p.results,
+        figures: p.figures,
+        abstract: p.description,
+        achievements: p.achievements,
+        tags: p.tags
+      });
+    });
+  });
+  EXTRA_PROJECTS.forEach(p => out.push({
+    id: p.slug,
+    base: p.base,
+    course: p.course,
+    period: p.period,
+    title: p.title,
+    summary: p.summary,
+    problem: p.problem,
+    approach: p.approach,
+    results: p.results,
+    figures: p.figures,
+    abstract: p.abstract,
+    achievements: p.achievements,
+    tags: p.tags
+  }));
+  return out;
+}
+
+// Shared write-up renderer: problem / approach / results (or the in-progress
+// plan/schedule variant), plus result figures. This is the ONE place that
+// turns a project's data into its prose+figures markup, used both by the
+// Projects/Research showcase cards and by a featured project's card on its
+// own course page (see projCardHtml in renderCourse), so the two can never
+// drift apart the way a separate hand-kept course-page blurb used to: edit
+// the project's data once, and both places pick it up.
+//
+// Deliberately carries no report/slide PDFs or code: it says what the work
+// was and how it turned out, in text. Preferred shape is the three-part
+// write-up: problem / approach / results, with the result figures under the
+// last block. Entries that have not been written up that way yet fall back
+// to the older abstract + achievements pair, so nothing goes blank while the
+// text is still being filled in.
+function writeupBlocksHtml(item) {
+  let blocks = '';
+  const paras = t => (Array.isArray(t) ? t : [t])
+    .map(p => `<p class="showcase-abstract">${p}</p>`).join('');
+  const block = (label, text) => `
+      <div class="proj-block">
+        <p class="proj-block-label">${label}</p>
+        ${paras(text)}
+      </div>`;
+
+  // Work still in progress swaps the past-tense labels: `approachLabel`
+  // renames the middle block, and `plan` adds a "Planned work" block in
+  // place of results that do not exist yet.
+  if (item.problem)  blocks += block('The problem', item.problem);
+  if (item.approach) blocks += block(item.approachLabel || 'The approach', item.approach);
+  if (item.plan)     blocks += block('Planned work', item.plan);
+  if (item.schedule) blocks += `
+      <div class="proj-block">
+        <p class="proj-block-label">Schedule</p>
+        <ol class="showcase-schedule">
+          ${item.schedule.map(r => `<li><span class="term">${r.term}</span><span>${r.work}</span></li>`).join('')}
+        </ol>
+      </div>`;
+  if (item.results)  blocks += block('What came out', item.results);
+
+  if (!item.problem && item.abstract)     blocks += block('Abstract', item.abstract);
+  if (!item.results && item.achievements) blocks += block('How it turned out', item.achievements);
+
+  // Result figures, read from <base>/<file>. A missing file takes its own
+  // figure out of the drawer, same self-healing pattern as the thumbnail, so
+  // a card is never left with a broken image while assets are still coming in.
+  // Optional `width` (px) shows a large or tall figure smaller than the column;
+  // max-width: 100% in the CSS still shrinks it further on a phone.
+  (item.figures || []).forEach(f => {
+    blocks += `
+      <figure class="showcase-figure">
+        <img src="${item.base}/${f.file}" alt="" loading="lazy"${f.width ? ` style="width:${f.width}px"` : ''}
+             onerror="this.closest('.showcase-figure').remove()" />
+        ${f.caption ? `<figcaption>${f.caption}</figcaption>` : ''}
+      </figure>`;
+  });
+  if (item.hasFigure) {
+    // Older single-figure entries: <base>/pic2.jpg under the text.
+    blocks += `
+      <figure class="showcase-figure">
+        <img src="${item.base}/pic2.jpg" alt="" loading="lazy"
+             onerror="this.closest('.showcase-figure').remove()" />
+        ${item.figureCaption ? `<figcaption>${item.figureCaption}</figcaption>` : ''}
+      </figure>`;
+  }
+  return blocks;
+}
+
+function showcaseCardHtml(item, prefix) {
+  const drawerId = `${prefix}-${item.id}`;
+  const tags = (item.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+  const thumb = `${item.base}/pic1.jpg`;
+  const blocks = writeupBlocksHtml(item);
+
+  return `
+    <article class="showcase reveal">
+      <div class="showcase-head" aria-controls="${drawerId}">
+        <div class="showcase-text">
+          ${item.period ? `<div class="date">${item.period}</div>` : ''}
+          <h3>${item.title}</h3>
+          <p class="sub">${item.course}</p>
+          <p class="showcase-summary">${item.summary || ''}</p>
+          ${tags ? `<div class="tag-row">${tags}</div>` : ''}
+        </div>
+        <div class="showcase-side${item.noThumb ? ' no-thumb' : ''}">
+          ${item.noThumb ? '' : `<div class="showcase-thumb">
+            <img src="${thumb}" alt="" loading="lazy"
+                 onerror="this.closest('.showcase-thumb').classList.add('is-empty'); this.remove();" />
+          </div>`}
+          <button type="button" class="showcase-more"${item.noThumb ? ' style="margin-top:auto"' : ''} aria-expanded="false" aria-controls="${drawerId}"
+                  onclick="toggleShowcase(this)"><span class="more">More</span><span class="less">Less</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button>
+        </div>
+      </div>
+      <div class="drawer" id="${drawerId}">
+        <div class="drawer-inner">
+          ${blocks}
+          <button class="btn btn-sm drawer-close" onclick="closeShowcase(this)">${ICON_CLOSE}Close</button>
+        </div>
+      </div>
+    </article>`;
+}
+
+// Showcase accordion. Kept separate from toggleProj() because these cards
+// live outside the courses layout and must not touch its focus mode.
+// Only one card per list is open at a time: opening a card closes the one
+// that was open, playing the same collapse animation the drawer always uses
+// (no shortcut to an instant close). When the closing card sits above the
+// one just clicked, that collapse would otherwise drag the clicked card up
+// the screen mid-animation, so a rAF loop runs for the length of the
+// transition and scrolls by whatever the clicked head moved each frame,
+// so the clicked card stays put while the card above it visibly folds shut.
+function setShowcase(card, open) {
+  card.classList.toggle('open', open);
+  card.querySelector('.drawer').classList.toggle('open', open);
+  const btn = card.querySelector('.showcase-more');
+  if (btn) btn.setAttribute('aria-expanded', String(open));
+}
+const DRAWER_MS = 520; // a hair past the drawer's own 0.5s collapse
+// Runs `close`, which collapses zero or more drawers above `anchor`, and
+// keeps anchor's on-screen position fixed while that happens. `target` is
+// read once, before anything collapses, and every correction measures
+// against that same fixed value rather than the previous frame's reading.
+// Re-basing to the last (already-drifted) frame is what turned this into a
+// feedback loop that overshot and corrected back past itself each frame,
+// which is what actually read as a shake; anchoring every frame to one
+// fixed target converges instead of oscillating. With motion enabled the
+// collapse is a CSS transition, so getBoundingClientRect() moves gradually,
+// and a rAF loop re-measures the drift from target every frame, for as long
+// as the transition runs. With reduced motion the CSS transition is switched
+// off (see the media query above), so the layout change is instant and one
+// before/after measurement is enough; the "after" read is also what forces
+// that change to actually happen. Every correction passes behavior:
+// 'instant' explicitly, since html has scroll-behavior: smooth for
+// anchor-link scrolling, and the two-argument scrollBy(x, y) form has no
+// way to opt out of that and inherits it, so each nudge here would
+// otherwise itself animate over several hundred milliseconds instead of
+// landing immediately.
+function collapseKeepingPut(anchor, close) {
+  const target = anchor.getBoundingClientRect().top;
+  if (reduceMotion.matches) {
+    close();
+    const drift = anchor.getBoundingClientRect().top - target;
+    if (drift) window.scrollBy({ top: drift, behavior: 'instant' });
+    return;
+  }
+  const start = performance.now();
+  close();
+  (function step(now) {
+    const drift = anchor.getBoundingClientRect().top - target;
+    if (drift) window.scrollBy({ top: drift, behavior: 'instant' });
+    if (now - start < DRAWER_MS) requestAnimationFrame(step);
+  })(start);
+}
+function toggleShowcase(btn) {
+  const card   = btn.closest('.showcase');
+  const drawer = card.querySelector('.drawer');
+  const isOpen = card.classList.contains('open');
+  if (!isOpen) {
+    const others = [...card.parentNode.querySelectorAll('.showcase.open')].filter(c => c !== card);
+    if (others.length) collapseKeepingPut(btn, () => others.forEach(other => setShowcase(other, false)));
+  }
+  setShowcase(card, !isOpen);
+  if (!isOpen) loadPdfSlots(drawer);
+}
+function closeShowcase(btn) {
+  const card = btn.closest('.showcase');
+  setShowcase(card, false);
+  const head = card.querySelector('.showcase-head');
+  if (head) head.scrollIntoView({ block: 'nearest' });
+}
+
+// Instructor chunk appended to the course-sub line: " · <icon> Dr. Name".
+// Renders a link only when instructorUrl is a real URL (not blank/PLACEHOLDER).
+function instructorHtml(c) {
+  if (!c.instructor) return '';
+  const icon = '<svg class="instructor-icon" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3 0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>';
+  const label = `${icon}${c.instructor}`;
+  const hasUrl = c.instructorUrl && c.instructorUrl !== 'PLACEHOLDER_URL';
+  const node = hasUrl
+    ? `<a class="instructor" href="${c.instructorUrl}" target="_blank" rel="noopener">${label}</a>`
+    : `<span class="instructor">${label}</span>`;
+  return ` · ${node}`;
+}
+
+/* ---------- COURSES ---------- */
+const courseNav     = document.getElementById('courseNav');
+const courseContent = document.getElementById('courseContent');
+const coursesLayout = document.querySelector('.courses-layout');
+const courseSlugs   = Object.keys(COURSES_DATA);
+
+/* ---------- Focus mode (full-width PDF viewer) ----------
+   When any PDF drawer is open, the whole courses layout expands to the full
+   page width. The sidebar stays visible; closing the PDF restores the width. */
+function setFocusMode(on) {
+  coursesLayout.classList.toggle('focus-mode', on);
+}
+// reflect focus state from whether a drawer is currently open
+function refreshFocusMode() {
+  setFocusMode(!!courseContent.querySelector('.drawer.open'));
+}
+// Close button inside a PDF viewer: close its drawer + clear card highlight
+function closePdf(btn) {
+  const drawer = btn.closest('.drawer');
+  if (!drawer) return;
+  drawer.classList.remove('open');
+  const projCard = drawer.closest('.proj-card');
+  if (projCard) {
+    projCard.classList.remove('open');
+    const expandTarget = projCard.querySelector('.proj-more') || projCard.querySelector('.proj-head');
+    if (expandTarget) expandTarget.setAttribute('aria-expanded', 'false');
+  }
+  const grid = drawer.closest('.hw-grid');           // present only for HW drawers
+  if (grid) {
+    const card = grid.querySelector(`.hw-card[data-hw="${drawer.dataset.drawer}"]`);
+    if (card) { card.classList.remove('open'); card.setAttribute('aria-expanded', 'false'); }
+    grid.querySelectorAll('.hw-card.sibling-open').forEach(el => el.classList.remove('sibling-open'));
+  }
+  // showcase cards live outside the courses layout and keep their own state
+  const showcase = drawer.closest('.showcase');
+  if (showcase) {
+    showcase.classList.remove('open');
+    const moreBtn = showcase.querySelector('.showcase-more');
+    if (moreBtn) moreBtn.setAttribute('aria-expanded', 'false');
+  }
+  refreshFocusMode();
+}
+
+// Course display name -> PascalCase file-name prefix, e.g. "Advanced
+// Aircraft Structures" -> "AdvancedAircraftStructures", used for the
+// homework/slides asset filenames (strips HTML entities like "&amp;").
+function courseFileName(name) {
+  return name.replace(/&amp;/g, 'and').replace(/[^A-Za-z0-9]+/g, ' ')
+    .trim().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+}
+
+// kebab-case project slug -> PascalCase, e.g. "abaqus-user-subroutines" ->
+// "AbaqusUserSubroutines", used for the slides asset filename.
+function slugFileName(slug) {
+  return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+}
+
+function renderCourse(slug, fadeMs, openProjectSlug) {
+  coursesLayout.classList.remove('focus-mode'); // always start a course unfocused
+  const c = COURSES_DATA[slug];
+  const filePrefix = courseFileName(c.name);
+
+  // homework cards, paired two-per-row; each pair is its own flex row so the
+  // open card can grow and its row-mate shrink without touching other rows.
+  // Drawers sit outside the row (full-width) so they never affect its flex math.
+  let hwCards = '';
+  for (let i = 0; i < c.homeworks.length; i += 2) {
+    const pair = c.homeworks.slice(i, i + 2);
+    hwCards += `<div class="hw-row">` + pair.map(hw => `
+      <div class="hw-card" data-hw="${hw.id}" role="button" tabindex="0" aria-expanded="false" aria-controls="hwdrawer-${slug}-${hw.id}" onclick="toggleHw(this)" onkeydown="activateOnKey(event, this, toggleHw)" title="HW ${hw.id}: ${hw.topic}">
+        <span class="hw-num">HW ${hw.id}</span>
+        <span class="hw-sep">·</span>
+        <span class="hw-topic">${hw.topic}</span>
+      </div>`).join('') + `</div>`;
+    hwCards += pair.map(hw => {
+      const inner = hw.notebook
+        ? notebookBlock(hw, `assets/courses/${slug}/hw/${filePrefix}_HW${hw.id}.ipynb`)
+        : `<div style="padding-top:14px">${pdfViewer(`assets/courses/${slug}/hw/${filePrefix}_HW${hw.id}.pdf`)}</div>`;
+      return `
+      <div class="drawer hw-drawer" id="hwdrawer-${slug}-${hw.id}" data-drawer="${hw.id}">
+        <div class="drawer-inner">
+          ${inner}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // project cards: presentations (kind: "Presentation") are pulled into
+  // their own section, separate from actual projects.
+  function projCardHtml(p) {
+    const base = `assets/courses/${slug}/projects/${p.slug}`;
+    // A featured project is the SAME project shown on the Projects page:
+    // its write-up (problem/approach/results + figures) is authored once in
+    // COURSES_DATA and rendered here via the shared writeupBlocksHtml(), so
+    // this course page can never drift from what the showcase card says.
+    // Once a project has that write-up, its report PDF is redundant here
+    // (same reasoning as the showcase cards carrying no PDFs at all) and is
+    // skipped; a Presentation's slides are its only content, so those stay.
+    let blocks = p.featured ? writeupBlocksHtml({ ...p, base }) : '';
+    if (p.featured) {
+      // report/reports intentionally not rendered, see comment above.
+    } else if (p.reports && p.reports.length) {
+      // Multiple named reports (e.g. one per project phase) instead of the
+      // single default report.pdf, each gets its own labeled viewer.
+      p.reports.forEach(rep => {
+        blocks += `
+          <div class="proj-block">
+            <p class="proj-block-label">${rep.label}</p>
+            ${pdfViewer(base + '/' + rep.file)}
+            ${redactionNotice()}
+          </div>`;
+      });
+    } else if (p.hasReport) {
+      blocks += `
+        <div class="proj-block">
+          <p class="proj-block-label">Report</p>
+          ${pdfViewer(base + '/report.pdf')}
+          ${redactionNotice()}
+        </div>`;
+    }
+    if (p.hasSlides) {
+      const slidesFile = `${filePrefix}_${slugFileName(p.slug)}.pdf`;
+      blocks += `
+        <div class="proj-block">
+          <p class="proj-block-label">Slides</p>
+          ${pdfViewer(base + '/' + slidesFile)}
+          ${redactionNotice()}
+        </div>`;
+    }
+    if (p.hasCode && p.code) {
+      blocks += `
+        <div class="proj-block">
+          <p class="proj-block-label">Code</p>
+          <a class="btn btn-primary btn-sm" href="${p.code}" target="_blank" rel="noopener">${ICON_GITHUB}View on GitHub</a>
+        </div>`;
+    }
+    const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+    const drawerId = `projdrawer-${slug}-${p.slug}`;
+    // A featured project is also a Projects-page showcase card, and a
+    // Presentation gets the same treatment, so both open the same way: only
+    // the More/Less button is clickable, not the whole head. A non-featured
+    // course-only project keeps the whole-head click.
+    const useMoreButton = p.featured || p.kind === 'Presentation';
+    const head = useMoreButton
+      ? `<div class="proj-head" aria-controls="${drawerId}">
+          <h4>${p.title}</h4>
+          <p class="proj-desc">${p.summary || p.description}</p>
+          <div class="proj-head-foot">
+            <div class="tag-row">${tags}</div>
+            <button type="button" class="showcase-more proj-more" aria-expanded="false" aria-controls="${drawerId}"
+                    onclick="toggleProj(this)"><span class="more">More</span><span class="less">Less</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></button>
+          </div>
+        </div>`
+      : `<div class="proj-head" role="button" tabindex="0" aria-expanded="false" aria-controls="${drawerId}" onclick="toggleProj(this)" onkeydown="activateOnKey(event, this, toggleProj)">
+          <h4>${p.title}</h4>
+          <p class="proj-desc">${p.summary || p.description}</p>
+          <div class="tag-row">${tags}</div>
+        </div>`;
+    return `
+      <div class="proj-card">
+        ${head}
+        <div class="drawer" id="${drawerId}" data-course="${slug}" data-project="${p.slug}">
+          <div class="drawer-inner">
+            ${blocks}
+            <button class="btn btn-sm drawer-close" onclick="closeProj(this)">${ICON_CLOSE}Close</button>
+          </div>
+        </div>
+      </div>`;
+  }
+  const presentationItems = c.projects.filter(p => p.kind === 'Presentation');
+  const projectItems = c.projects.filter(p => p.kind !== 'Presentation');
+  const presentationCards = presentationItems.map(projCardHtml).join('');
+  const projectCards = projectItems.map(projCardHtml).join('');
+
+  courseContent.innerHTML = `
+    <h3 class="course-title">${c.name}</h3>
+    <p class="course-sub">${c.homeworks.length} homework${c.homeworks.length!==1?'s':''}${presentationItems.length ? ` · ${presentationItems.length} presentation${presentationItems.length!==1?'s':''}` : ''} · ${projectItems.length} project${projectItems.length!==1?'s':''}${instructorHtml(c)}</p>
+
+    ${c.homeworks.length ? `
+    <p class="sub-heading">Homeworks</p>
+    <div class="hw-grid">${hwCards}</div>` : ''}
+
+    ${presentationItems.length ? `
+    <p class="sub-heading">Presentations</p>
+    <div class="proj-grid">${presentationCards}</div>` : ''}
+
+    ${projectItems.length ? `
+    <p class="sub-heading">Projects</p>
+    <div class="proj-grid">${projectCards}</div>` : ''}
+  `;
+
+  // Fade the freshly rendered content in (when switching courses). Start at 0
+  // with transitions off, then re-enable on the next frame so it animates.
+  if (fadeMs) {
+    courseContent.style.transition = 'none';
+    courseContent.style.opacity = '0';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      courseContent.style.transition = `opacity ${fadeMs}ms ease`;
+      courseContent.style.opacity = '1';
+    }));
+  } else {
+    courseContent.style.opacity = '1'; // initial render: fully visible
+  }
+
+  // Deep link: a URL naming a specific project (#courses/<slug>/<projectSlug>)
+  // opens that project's drawer once the course markup above exists.
+  if (openProjectSlug) {
+    const drawer = courseContent.querySelector(`.drawer[data-project="${openProjectSlug}"]`);
+    const head = drawer && drawer.previousElementSibling;
+    if (head && head.classList.contains('proj-head')) {
+      requestAnimationFrame(() => toggleProj(head));
+    }
+  }
+}
+
+// HW accordion: open this card's drawer (looked up by data-hw/data-drawer,
+// since drawers now live below their row rather than right after each card)
+function toggleHw(card) {
+  const grid = card.closest('.hw-grid');
+  const drawer = grid.querySelector(`.hw-drawer[data-drawer="${card.dataset.hw}"]`);
+  const isOpen = drawer.classList.contains('open');
+  // close whichever HW (in any row) was open before
+  grid.querySelectorAll('.hw-card.open').forEach(el => { el.classList.remove('open'); el.setAttribute('aria-expanded', 'false'); });
+  grid.querySelectorAll('.drawer.open').forEach(el => el.classList.remove('open'));
+  grid.querySelectorAll('.hw-card.sibling-open').forEach(el => el.classList.remove('sibling-open'));
+  if (!isOpen) {
+    card.classList.add('open');
+    card.setAttribute('aria-expanded', 'true');
+    drawer.classList.add('open');
+    // shrink just this card's row-mate (card.parentNode is the .hw-row pair)
+    card.parentNode.querySelectorAll('.hw-card').forEach(el => { if (el !== card) el.classList.add('sibling-open'); });
+    loadPdfSlots(drawer);
+  }
+  refreshFocusMode();
+}
+
+// Project accordion. `el` is either the whole .proj-head (non-featured,
+// whole-box click) or the .proj-more button nested inside it (featured
+// projects), so this always resolves the card/drawer/head via closest()
+// rather than assuming `el` IS the head.
+function toggleProj(el) {
+  const card   = el.closest('.proj-card');
+  const grid   = card.closest('.proj-grid');
+  const drawer = card.querySelector('.drawer');
+  const expandTarget = card.querySelector('.proj-more') || card.querySelector('.proj-head');
+  const isOpen = card.classList.contains('open');
+  // Only one card open per grid at a time, same as the homework accordion.
+  if (grid) {
+    grid.querySelectorAll('.proj-card.open').forEach(other => {
+      if (other === card) return;
+      other.classList.remove('open');
+      const otherDrawer = other.querySelector('.drawer');
+      if (otherDrawer) otherDrawer.classList.remove('open');
+      const otherTarget = other.querySelector('.proj-more') || other.querySelector('.proj-head');
+      if (otherTarget) otherTarget.setAttribute('aria-expanded', 'false');
+    });
+  }
+  if (isOpen) {
+    card.classList.remove('open');
+    drawer.classList.remove('open');
+    expandTarget.setAttribute('aria-expanded', 'false');
+  } else {
+    card.classList.add('open');
+    drawer.classList.add('open');
+    expandTarget.setAttribute('aria-expanded', 'true');
+    loadPdfSlots(drawer);
+  }
+  refreshFocusMode();
+}
+function closeProj(btn) {
+  const card = btn.closest('.proj-card');
+  card.classList.remove('open');
+  const drawer = card.querySelector('.drawer');
+  drawer.classList.remove('open');
+  const expandTarget = card.querySelector('.proj-more') || card.querySelector('.proj-head');
+  if (expandTarget) expandTarget.setAttribute('aria-expanded', 'false');
+  refreshFocusMode();
+}
+
+/* Switch courses with a smooth transition. If a PDF viewer is open, first
+   close it (fade + slide, 0.3s) and collapse the full-width view, THEN swap in
+   the new course and fade it in. With no PDF open, just crossfade (0.2s).
+   Nothing ever cuts instantly. A course switch is a real "go somewhere else"
+   navigation, so, unlike opening a project drawer, it earns its own entry
+   in the back/forward history. */
+function switchCourse(slug, btn) {
+  // highlight the chosen course immediately
+  courseNav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const pdfOpen = !!courseContent.querySelector('.drawer.open');
+  const dur = pdfOpen ? 300 : 200;
+
+  if (pdfOpen) {
+    // smoothly close the open PDF viewer(s) and exit full-width mode
+    courseContent.querySelectorAll('.drawer.open').forEach(d => d.classList.remove('open'));
+    courseContent.querySelectorAll('.hw-card.open, .proj-card.open').forEach(el => el.classList.remove('open'));
+    setFocusMode(false);
+  }
+  // No history write here on purpose: switching courses in the sidebar is
+  // browsing, not navigation, same as opening a project drawer. A refresh
+  // or a tab switch must land back on the default (first) course, never on
+  // whichever one was last clicked. Only an explicit nav-tab click or a
+  // pasted deep link is allowed to change the URL (see resetPageState()).
+
+  // fade the current content out, then swap + fade the new content in
+  courseContent.style.transition = `opacity ${dur}ms ease`;
+  courseContent.style.opacity = '0';
+  setTimeout(() => renderCourse(slug, dur), dur);
+}
+
+// course sidebar buttons
+courseSlugs.forEach((slug, i) => {
+  const btn = document.createElement('button');
+  btn.innerHTML = COURSES_DATA[slug].name; // innerHTML so &amp; renders as &
+  btn.dataset.slug = slug;
+  if (i === 0) btn.classList.add('active');
+  btn.addEventListener('click', () => switchCourse(slug, btn));
+  courseNav.appendChild(btn);
+});
+renderCourse(courseSlugs[0]); // initial
+
+/* ---------- CERTIFICATES ---------- */
+document.getElementById('certGrid').innerHTML = CERTIFICATES_DATA.map(cert => `
+  <div class="cert-card reveal">
+    <div class="cert-thumb">
+      <img src="assets/certificates/${cert.slug}.jpg" alt="${cert.name} certificate"
+        onerror="this.style.display='none'; this.parentNode.textContent='Thumbnail: assets/certificates/${cert.slug}.jpg';" />
+    </div>
+    <div class="cert-body">
+      <h4>${cert.name}</h4>
+      <p class="cert-meta">${cert.issuer} · ${cert.date}</p>
+      ${cert.summary ? `<p class="cert-summary">${cert.summary}</p>` : ''}
+      ${cert.note ? `<p class="cert-note">${cert.note}</p>` : ''}
+    </div>
+  </div>
+`).join('');
+
+/* ---------- PROJECT SHOWCASE ----------
+   Drawer ids are prefixed per grid so multiple copies never collide. */
+const showcaseItems = showcaseProjects();
+document.getElementById('courseProjGrid').innerHTML =
+  showcaseItems.map(i => showcaseCardHtml(i, 'cp')).join('');
+document.getElementById('projectsCount').textContent =
+  `${showcaseItems.length} selected project${showcaseItems.length !== 1 ? 's' : ''}`;
+
+/* ---------- RESEARCH ----------
+   Same showcaseCardHtml() renderer as Projects, prefixed 'res' so its
+   drawer ids never collide with the 'sel'/'cp' project copies above. */
+document.getElementById('researchGrid').innerHTML =
+  RESEARCH_DATA.map(r => showcaseCardHtml(r, 'res')).join('');
+document.getElementById('researchCount').textContent =
+  `${RESEARCH_DATA.length} selected research`;
+
+/* ---------- TEACHING ---------- */
+document.getElementById('teachContainer').innerHTML = TEACHING_DATA.map(group => `
+  <div class="teach-group">
+    <h3>${group.semester}</h3>
+    <div class="teach-list">
+      ${group.entries.map(e => `
+        <div class="teach-item reveal">
+          <div class="teach-row">
+            <span class="tname">${e.course}</span>
+            <span class="tprof">${e.professor}</span>
+            <span class="trole${e.role === 'Head TA' ? ' trole-head' : ''}">${e.role}</span>
+          </div>
+          ${e.duties ? `<p class="tduties">${e.duties}</p>` : ''}
+        </div>`).join('')}
+    </div>
+  </div>
+`).join('');
+
+// Total appointments, broken down by role: the same "N of these · M of
+// those" summary the course pages already give homeworks/projects.
+const allTeachEntries = TEACHING_DATA.flatMap(g => g.entries);
+const headTaCount = allTeachEntries.filter(e => e.role === 'Head TA').length;
+const taCount = allTeachEntries.length - headTaCount;
+document.getElementById('teachCount').textContent =
+  `${allTeachEntries.length} appointment${allTeachEntries.length !== 1 ? 's' : ''}: `
+  + `${taCount} as TA` + (headTaCount ? ` · ${headTaCount} as Head TA` : '');
+
+/* =================================================================
+   SPA PAGE ROUTER
+   -----------------------------------------------------------------
+   Only one .page is visible at a time. Clicking a nav link hides all
+   pages and shows the selected one (display none/block via .active),
+   fading it in. Default page on load is About.
+
+   Hash shapes (so a course or a specific project/report can be bookmarked
+   or sent to someone directly, and Back actually steps back):
+     #about | #research | #certificates | #teaching | #skills | #contact
+     #courses                             (first course)
+     #courses/<courseSlug>                (that course)
+     #courses/<courseSlug>/<projectSlug>  (that course, that project open)
+   ================================================================= */
+const mainNav  = document.getElementById('mainNav');
+const navLinks = document.querySelectorAll('#mainNav a');
+const pages    = document.querySelectorAll('.page');
+
+// Sections that used to exist on their own. Anyone holding an old link (or a
+// bookmark) still lands where that content lives now instead of on About.
+const PAGE_ALIASES = { certificates: 'skills' };
+
+function showPage(id) {
+  if (PAGE_ALIASES[id]) id = PAGE_ALIASES[id];
+  // fall back to About if the id is unknown
+  if (!document.getElementById(id) || !document.getElementById(id).classList.contains('page')) {
+    id = 'about';
+  }
+  pages.forEach(p => p.classList.toggle('active', p.id === id));
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+  window.scrollTo(0, 0);
+}
+
+// Apply a full route (everything after '#') on initial load and on Back/Forward.
+function applyRoute(rawHash) {
+  const parts = (rawHash || '').replace(/^#/, '').split('/').filter(Boolean);
+  const id = parts[0] || 'about';
+  showPage(id);
+  if (id === 'courses') {
+    const slug = COURSES_DATA[parts[1]] ? parts[1] : courseSlugs[0];
+    const btn = [...courseNav.querySelectorAll('button')].find(b => b.dataset.slug === slug);
+    if (btn) {
+      courseNav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    renderCourse(slug, 0, parts[1] ? parts[2] : undefined);
+  }
+}
+
+/* =================================================================
+   MOBILE NAV  (hamburger dropdown, <760px; see the breakpoint in <style>)
+   ================================================================= */
+const navToggle = document.getElementById('navToggle');
+function setMobileNavOpen(open) {
+  mainNav.classList.toggle('open', open);
+  navToggle.classList.toggle('open', open);
+  navToggle.setAttribute('aria-expanded', String(open));
+}
+navToggle.addEventListener('click', () => setMobileNavOpen(!mainNav.classList.contains('open')));
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && mainNav.classList.contains('open')) setMobileNavOpen(false);
+});
+// A resize past the breakpoint (rotating a tablet, widening a browser
+// window) shouldn't leave the dropdown stuck open with nowhere to hide.
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 760) setMobileNavOpen(false);
+});
+
+// Explicit nav-tab clicks always land on that page's default state: no
+// card, project or PDF viewer stays open from an earlier visit in the same
+// session. Deep links (initial load, Back/Forward, a project's own URL) skip
+// this and keep going through applyRoute(), which may legitimately want a
+// specific project open.
+function resetPageState(id) {
+  const page = document.getElementById(id);
+  if (!page) return;
+  page.querySelectorAll('.showcase.open').forEach(card => {
+    card.classList.remove('open');
+    const btn = card.querySelector('.showcase-more');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+  });
+  page.querySelectorAll('.drawer.open').forEach(d => d.classList.remove('open'));
+  if (id === 'courses') {
+    // Reset to the first course too, not just its open drawers: leaving and
+    // coming back to Courses should never keep whichever course was last
+    // selected, same as a project drawer never stays open across a switch.
+    const defaultSlug = courseSlugs[0];
+    courseNav.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.slug === defaultSlug));
+    renderCourse(defaultSlug, 0);
+  }
+}
+
+navLinks.forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const id = a.getAttribute('href').slice(1);
+    showPage(id);
+    resetPageState(id);
+    setMobileNavOpen(false);
+    // Courses keeps whichever course is already on screen, so the URL has to
+    // name it: a bare "#courses" would send anyone the link is shared with
+    // to the first course instead of the one actually being looked at.
+    let hash = '#' + id;
+    if (id === 'courses') {
+      const active = courseNav.querySelector('button.active');
+      if (active) hash += '/' + active.dataset.slug;
+    }
+    if (location.hash !== hash) history.pushState(null, '', hash);
+  });
+});
+
+// Back/Forward: re-apply whatever route the browser now points to.
+window.addEventListener('popstate', () => applyRoute(location.hash || '#about'));
+
+// initial route: from the URL if valid, otherwise About
+applyRoute(location.hash || '#about');
+
+/* =================================================================
+   THEME TOGGLE  (light / dark) + persistence in localStorage["theme"]
+   ================================================================= */
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const next = document.body.classList.contains('dark') ? 'light' : 'dark';
+  document.body.classList.remove('dark', 'light');
+  document.body.classList.add(next);
+  try { localStorage.setItem('theme', next); } catch (e) { /* ignore */ }
+});
+
+// Bind the scroll-reveal observer to every .reveal element currently in the
+// DOM (static sections + the certificates/teaching lists rendered above).
+observeReveal(document);
+
+/* =================================================================
+   TOPBAR HEIGHT
+   -----------------------------------------------------------------
+   The topbar is sticky now (stays put while scrolling). Feeds --topbar-h
+   so the sticky course sidebar (see .course-nav) stops just below it
+   instead of sliding underneath. Re-measured on resize because the
+   topbar wraps to multiple rows, and grows taller, at the mobile
+   breakpoint.
+   ================================================================= */
+function syncTopbarHeight() {
+  const h = document.querySelector('.topbar').offsetHeight;
+  document.documentElement.style.setProperty('--topbar-h', h + 'px');
+}
+syncTopbarHeight();
+window.addEventListener('resize', syncTopbarHeight);
+
+/* =================================================================
+   LINK GUARDS  (CV download, standalone "View report" links)
+   -----------------------------------------------------------------
+   Unlike course PDFs, these aren't behind a placeholder drawer, so a missing
+   file would otherwise fail silently as a raw browser 404. A same-origin
+   HEAD check greys the link out and disables it instead. Network errors
+   (offline) are treated as "assume it's fine", matching loadPdfSlots().
+   ================================================================= */
+document.querySelectorAll('a[data-guard]').forEach(a => {
+  const href = a.getAttribute('href');
+  fetch(href, { method: 'HEAD' })
+    .then(res => {
+      if (!res.ok) {
+        a.classList.add('link-unavailable');
+        a.setAttribute('aria-disabled', 'true');
+        a.title = 'Not yet uploaded';
+        a.addEventListener('click', e => e.preventDefault());
+      }
+    })
+    .catch(() => { /* offline -> leave the link as-is */ });
+});
+
+/* ---------- Back to top ----------
+   Shown once the page is scrolled past 60% of a screen (400px at least),
+   hidden again near the top. Scroll events are folded into one check per
+   frame. The click scrolls smoothly unless reduced motion is requested,
+   then moves focus to the current page's nav link so a keyboard user is
+   not left on a button that has just faded out. */
+const toTop = document.getElementById('toTop');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let toTopQueued = false;
+function syncToTop() {
+  toTopQueued = false;
+  toTop.classList.toggle('show', window.scrollY > Math.max(400, window.innerHeight * 0.6));
+}
+window.addEventListener('scroll', () => {
+  if (!toTopQueued) { toTopQueued = true; requestAnimationFrame(syncToTop); }
+}, { passive: true });
+window.addEventListener('resize', syncToTop);
+toTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+  const here = document.querySelector('.nav a.active');
+  if (here && here.offsetParent) here.focus({ preventScroll: true });
+});
+syncToTop();
+</script>
+</body>
+</html>
