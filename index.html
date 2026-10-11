@@ -54,9 +54,9 @@
     --accent-soft:   var(--indigo-soft);
     --accent-border: var(--indigo-border);
     --accent-hover:  var(--indigo-deep);
-    --meta:          var(--amber);
-    --meta-soft:     var(--amber-soft);
-    --meta-border:   var(--amber-border);
+    --meta:          var(--indigo);
+    --meta-soft:     var(--indigo-soft);
+    --meta-border:   var(--indigo-border);
     --decor:         var(--cyan);
   }
 
@@ -655,7 +655,6 @@
   .course-nav button.active {
     color: var(--accent);
     background: var(--accent-soft);
-    border-left-color: var(--accent);
   }
   .course-content { flex: 1; min-width: 0; }
   .course-content h3.course-title { font-size: 1.45rem; margin: 0 0 4px; }
@@ -1263,6 +1262,8 @@ I'm an M.Sc. student in structural engineering. My B.Sc. was in aerospace engine
               <span class="pill">CATIA</span>
               <span class="pill">COMSOL</span>
               <span class="pill">MATLAB</span>
+              <span class="pill">AutoCAD</span>
+              <span class="pill">ANSYS</span>
             </div>
           </div>
           <div class="skill-col">
@@ -1382,7 +1383,7 @@ function observeReveal(root) {
    ================================================================= */
 const COURSES_DATA = {
   "advanced-aircraft-structures": {
-    name: "Advanced Aircraft Structures",
+    name: "Advanced Structural Analysis",
     instructor: "Dr. Kouchakzadeh",
     instructorUrl: "https://sharif.edu",
     homeworks: [
@@ -1433,8 +1434,8 @@ const COURSES_DATA = {
         featured: true,
         period: "02/26 – 08/26",
         summary: "Implementing a system that uses an LLM for decision-making in place of the engineer in the design process.",
-        title: "An Agentic LLM System for the Preliminary Structural Design of an Aircraft Wing Box",
-        problem: "Sizing an aircraft wing box is a design process built on decisions, and in traditional methods those decisions need an experienced engineer to make them: the alloy, the spar positions, the catalogue stringers, with many parameters to change and choose between at every step. Bending material in the covers, a spar web that buckles before it shears, ribs, joints, every margin pushed toward zero from above while the load envelope keeps moving with the structure's own weight: different fields have to be considered in the design, and they all have to be checked together rather than one at a time.",
+        title: "An Agentic LLM System for the Preliminary Structural Design of a Wing Box",
+        problem: "Sizing a wing box is a design process built on decisions, and in traditional methods those decisions need an experienced engineer to make them: the alloy, the spar positions, the catalogue stringers, with many parameters to change and choose between at every step. Bending material in the covers, a spar web that buckles before it shears, ribs, joints, every margin pushed toward zero from above while the load envelope keeps moving with the structure's own weight: different fields have to be considered in the design, and they all have to be checked together rather than one at a time.",
         approach: "I used the LLM as the decision-maker and Python code as the tool it calls to carry out the design and check the output of each analysis. The nine classical design phases become a LangGraph StateGraph over one shared, typed dossier, its backbone a reviewable prompt chain that fans spar web, ribs and joints out in parallel once the covers are sized, with a deterministic checker routing a failing design back to whichever node can fix its worst margin; material selection runs an Ashby structural index with alloy-family screening and a Pareto trade-off. Underneath, the sizing itself is a deterministic, unit-tested Python translation of Niu, Megson and Roskam.",
         results: "The course's own hand-worked cross-section is reproduced to tabulated precision as an automated acceptance gate, and rebuilding it surfaced four notation and arithmetic slips in the reference itself, each now pinned by a test. Run live against a published METU master's design of a PC-21 class trainer wing, the pipeline converged on 131.9 to 132.4 kg against that thesis's own optimized 125.9 kg, about 5% high, with the gap traced to the discrete stringer catalogue used here against the thesis's continuous search. I used Abaqus to validate the output of the design, building a 2024 model from the converged geometry that balanced the root reaction against the applied shear.",
         figures: [
@@ -1598,17 +1599,17 @@ const EXTRA_PROJECTS = [
   {
     slug: "stol-air-taxi",
     base: "assets/projects/stol-air-taxi",
-    course: "Aircraft Design I & II · Dr. Banazadeh",
+    course: "Airplane Design I & II · Dr. Banazadeh",
     period: "10/24 – 01/25, 03/25 – 07/25",
     title: "Hybrid-Electric STOL Air Taxi",
     summary: "Conceptual design of a hybrid-electric STOL air taxi with a six-person team, with my duty being the wing design, then individually carrying it into a structural design problem.",
-    problem: "Aircraft Design I and II are two consecutive courses sharing one continuous project. We were given an RFP for a hybrid-electric STOL air taxi built around distributed electric propulsion: four to six passengers plus a pilot, a 300 nautical mile range with a 10% reserve, at least 150 knots cruise, takeoff and landing within 300 feet, and FAR Part 23 certification. A six-person team took that brief through conceptual and then preliminary design. My share of the work was the wing design, the stabilizers, and the landing gear.",
-    approach: "Aircraft Design I started from a historical weight-fraction estimate cross-checked against comparable aircraft, then a matching diagram set the wing and power loading against the stall, takeoff, landing, climb, cruise and ceiling constraints, with my part covering the weight sensitivity study and the stall, takeoff and landing sizing on that diagram; a weighted decision matrix picked the configuration, a high tapered wing with a conventional tail and retractable tricycle gear, and I sized the wing's initial layout, the stabilizers and the landing gear, cross-checked against a weight-and-balance CG range and built out in SolidWorks. Aircraft Design II then took the wing from that conceptual layout into a detailed individual design and analysis: I built 3D SolidWorks models of the wing, the stabilizers and the engine-wing interfaces, and ran ABAQUS stress, deformation and buckling analyses against the loads implied by the distributed-propulsion layout and the STOL mission.",
-    results: "Aircraft Design I converged on a 5,612 lb aircraft with a 16.98 m² wing at aspect ratio 10 spanning 13 m, its empennage sized by the tail volume coefficient method and the layout validated with a full weight-and-balance check and a 5-view SolidWorks model. Aircraft Design II delivered a final wing, stabilizer and engine-interface design that met the STOL-specific safety, weight and performance requirements the ABAQUS analyses were run against.",
+    problem: "Airplane Design I and II are two consecutive courses sharing one continuous project. We were given an RFP for a hybrid-electric STOL air taxi built around distributed electric propulsion: four to six passengers plus a pilot, a 300 nautical mile range with a 10% reserve, at least 150 knots cruise, takeoff and landing within 300 feet, and FAR Part 23 certification. A six-person team took that brief through conceptual and then preliminary design. My share of the work was the wing design, the stabilizers, and the landing gear.",
+    approach: "Airplane Design I started from a historical weight-fraction estimate cross-checked against comparable airplanes, then a matching diagram set the wing and power loading against the stall, takeoff, landing, climb, cruise and ceiling constraints, with my part covering the weight sensitivity study and the stall, takeoff and landing sizing on that diagram; a weighted decision matrix picked the configuration, a high tapered wing with a conventional tail and retractable tricycle gear, and I sized the wing's initial layout, the stabilizers and the landing gear, cross-checked against a weight-and-balance CG range and built out in SolidWorks. Airplane Design II then took the wing from that conceptual layout into a detailed individual design and analysis: I built 3D SolidWorks models of the wing, the stabilizers and the engine-wing interfaces, and ran ABAQUS stress, deformation and buckling analyses against the loads implied by the distributed-propulsion layout and the STOL mission.",
+    results: "Airplane Design I converged on a 5,612 lb airplane with a 16.98 m² wing at aspect ratio 10 spanning 13 m, its empennage sized by the tail volume coefficient method and the layout validated with a full weight-and-balance check and a 5-view SolidWorks model. Airplane Design II delivered a final wing, stabilizer and engine-interface design that met the STOL-specific safety, weight and performance requirements the ABAQUS analyses were run against.",
     tags: ["Team Work", "SolidWorks", "ABAQUS", "FEM"],
     figures: [
       { file: "pic2.jpg", caption: "Team design poster for the AeroNEX hybrid-electric STOL air taxi, summarizing the mission requirements, configuration and sizing results." },
-      { file: "pic3.jpg", width: 620, caption: "AeroNEX, the designed aircraft." }
+      { file: "pic3.jpg", width: 620, caption: "AeroNEX, the designed airplane." }
     ]
   },
   {
@@ -1722,11 +1723,11 @@ const RESEARCH_DATA = [
   {
     id: "battery-thermal-system",
     base: "assets/research/battery-thermal-system",
-    course: "RAeS Competition: Lyrebird Electric STOL Aircraft",
+    course: "RAeS Competition: Lyrebird Electric STOL Airplane",
     period: "06/22 – 08/22",
     title: "Battery thermal system",
-    summary: "Cooling a battery pack for an electric STOL aircraft with a wing-mounted duct, simulated in COMSOL to run at about 25 °C against an 80 °C rated limit.",
-    abstract: "Compared radiator, air-blade and ducted cooling for the battery pack of an electric STOL aircraft, and chose the ducted design for its lower weight and simpler maintenance. Simulated the chosen duct in COMSOL Multiphysics with altitude-dependent air properties and turbulent flow, and added a desiccant chamber inside the duct to strip moisture from the cooling air before it reaches the battery box.",
+    summary: "Cooling a battery pack for an electric STOL airplane with a wing-mounted duct, simulated in COMSOL to run at about 25 °C against an 80 °C rated limit.",
+    abstract: "Compared radiator, air-blade and ducted cooling for the battery pack of an electric STOL airplane, and chose the ducted design for its lower weight and simpler maintenance. Simulated the chosen duct in COMSOL Multiphysics with altitude-dependent air properties and turbulent flow, and added a desiccant chamber inside the duct to strip moisture from the cooling air before it reaches the battery box.",
     achievements: "The simulation predicted a peak battery temperature of about 25 °C, well inside the battery's rated −30 °C to 80 °C operating range.",
     tags: ["Team Work", "COMSOL", "Heat Transfer"],
     figures: [
@@ -1757,12 +1758,11 @@ const CERTIFICATES_DATA = [
     summary: "How to design, structure and evaluate prompts that steer LLMs reliably."
   },
   {
-    slug: "chatbot-langchain-essentials",
-    name: "Personal Chatbot Development with LangChain Essentials",
-    issuer: "FaraDars",
-    date: "09/26",
-    summary: "Building a chatbot with LangChain: chains, memory and tool calling.",
-    note: "Course completed earlier; the certificate was issued later."
+    slug: "langchain-rag-developer",
+    name: "The Complete LangChain and RAG Developer Course",
+    issuer: "Maktabkhooneh",
+    date: "10/26",
+    summary: "Building retrieval-augmented generation pipelines and LLM applications with LangChain."
   },
   {
     slug: "deep-learning-tensorflow-keras",
@@ -1770,6 +1770,14 @@ const CERTIFICATES_DATA = [
     issuer: "FaraDars",
     date: "09/26",
     summary: "Building and training Neural Networks in Python with TensorFlow and Keras.",
+    note: "Course completed earlier; the certificate was issued later."
+  },
+  {
+    slug: "chatbot-langchain-essentials",
+    name: "Personal Chatbot Development with LangChain Essentials",
+    issuer: "FaraDars",
+    date: "09/26",
+    summary: "Building a chatbot with LangChain: chains, memory and tool calling.",
     note: "Course completed earlier; the certificate was issued later."
   },
   {
@@ -1797,14 +1805,16 @@ const TEACHING_DATA = [
   {
     semester: "Fall 2026",
     entries: [
-      { course: "Aircraft Structures", professor: "Dr. Hosseini Kordkheili", role: "Head TA",
+      { course: "Advanced Structural Analysis", professor: "Dr. Kouchakzadeh", role: "Head TA",
+        duties: "Conducted class sessions, prepared TA session slides, designed and graded assignments and quizzes" },
+      { course: "Structural Analysis", professor: "Dr. Hosseini Kordkheili", role: "Head TA",
         duties: "Conducted class sessions, prepared TA session slides, designed exercises, coordinated TA team, evaluated performance" }
     ]
   },
   {
     semester: "Fall 2025",
     entries: [
-      { course: "Aircraft Structures", professor: "Dr. Kouchakzadeh", role: "Head TA",
+      { course: "Structural Analysis", professor: "Dr. Kouchakzadeh", role: "Head TA",
         duties: "Conducted TA sessions, designed and graded assignments and quizzes" },
       { course: "Mechanics of Materials", professor: "Dr. Hosseini Kordkheili", role: "Head TA",
         duties: "Prepared TA session slides, designed exercises, coordinated TA team, evaluated performance" },
@@ -1824,7 +1834,7 @@ const TEACHING_DATA = [
   {
     semester: "Fall 2024",
     entries: [
-      { course: "Aircraft Structures", professor: "Dr. Kouchakzadeh", role: "TA",
+      { course: "Structural Analysis", professor: "Dr. Kouchakzadeh", role: "TA",
         duties: "Conducted TA sessions, designed and graded assignments and quizzes" }
     ]
   },
@@ -2210,7 +2220,7 @@ function closePdf(btn) {
 }
 
 // Course display name -> PascalCase file-name prefix, e.g. "Advanced
-// Aircraft Structures" -> "AdvancedAircraftStructures", used for the
+// Structural Analysis" -> "AdvancedStructuralAnalysis", used for the
 // homework/slides asset filenames (strips HTML entities like "&amp;").
 function courseFileName(name) {
   return name.replace(/&amp;/g, 'and').replace(/[^A-Za-z0-9]+/g, ' ')
