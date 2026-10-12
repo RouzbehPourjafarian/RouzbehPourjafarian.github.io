@@ -1689,22 +1689,6 @@ const RESEARCH_DATA = [
     tags: ["Agentic AI", "Composite Material", "LangGraph", "Optimization"]
   },
   {
-    id: "ifem-shm",
-    base: "assets/research/ifem-shm",
-    course: "Personal Research",
-    period: "07/25 – 08/25",
-    title: "Inverse finite element method for structural health monitoring",
-    summary: "Reconstructing structural deformation in real time from sparse strain sensors, and studying how that reconstruction could transfer to structures with little data of their own.",
-    problem: "Reconstructing a structure's deformed shape in real time from a handful of strain sensors, without knowing the loads or material behaviour driving that deformation, is the core problem shape sensing has to solve. A second, separate problem sits on top of it: a well-instrumented structure can build a reliable healthy-state baseline for damage detection, but a similar structure with only a few sensors cannot, so its diagnosis has to borrow from the first one's data despite the two never being identical.",
-    approach: "I worked through the iFEM formulation from its variational basis, where strains measured at discrete sensor locations feed a least-squares functional minimised over the nodal displacements, giving a pseudo-stiffness system I derived down to its shape-function and strain-displacement matrices for an 8-node hexahedral solid-shell element; solving that system reconstructs the full displacement field, and from it the stresses, the deformed shape and a strain-residual damage indicator, all without needing the external loads or material stiffness as inputs. I implemented this in Python and ran it on a simulated plate with 100 sensor locations and two seeded damage sites, comparing the baseline and damaged strain fields to recover both the location and severity of each site. For the second, population-based problem, I studied Transfer Component Analysis and worked through its formulation: a domain-adaptation method that maps a source structure's iFEM-reconstructed frequency response features and a target structure's directly measured features into a shared latent space with an RBF kernel and a Maximum Mean Discrepancy metric, where a new reading from the target structure would be flagged as damaged if its Mahalanobis distance to the healthy cluster passed a Monte Carlo threshold, letting a sparsely instrumented structure draw on a richer one's baseline instead of building its own from scratch.",
-    results: "The strain-sensor simulation recovered both seeded damage sites from the strain-residual field, with the estimated damage centroids landing close to the true locations on the 100-point sensor grid; the six-panel output tracks the mesh and sensor layout, the strain fields before and after damage, the time series at the affected sensors, and the final detection map side by side.",
-    figures: [
-      { file: "pic2.jpg", caption: "Strain sensor simulation on a 100-sensor plate: sensor layout with two seeded damage sites, strain fields before and after damage, strain time series at the sensors nearest the damage, and the resulting damage-detection map against the true locations." },
-      { file: "pic3.jpg", width: 420, caption: "The two-stage pipeline: a high-fidelity Abaqus model generates synthetic sensor data and a reference displacement field, iFEM reconstructs the displacement field from the sensor data alone on a coarser mesh, and the two are compared to check the reconstruction." }
-    ],
-    tags: ["FEM", "iFEM"]
-  },
-  {
     id: "structural-health-monitoring",
     base: "assets/research/structural-health-monitoring",
     course: "Bachelor Thesis · Dr. Ali Abedian",
